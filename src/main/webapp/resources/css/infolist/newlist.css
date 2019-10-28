@@ -1,0 +1,161 @@
+/* 全局设置(背景跟字体) */
+body {
+	background: #F0F0F0;
+	font-family:  "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+
+/*标题 */
+.title {
+	margin: 30px auto;
+	text-align: center;
+	font-size: 2.5em;
+}
+
+/* 列表主体 */
+#newsList {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 单个新闻 */
+.news {
+	padding: 10px;
+}
+
+/* 新闻图片 */
+.newsPic {
+	margin: auto;
+	border: #E6E6E6 solid 3px;
+	width: 160px;
+	height: 200px;
+	opacity: 1;
+	cursor: pointer;
+	border-radius: 3px;
+
+}
+/* 鼠标移入变大变透明 */
+
+
+/* 新闻标题 */
+.newsTitile {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px 20px;
+	/* 文字显示限制 */
+	display: -webkit-box;
+	/* 限制1行 */
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* 新闻摘要 */
+.newsInfo {
+	text-indent: 2em;
+	font-size: 14px;
+	width: 90%;
+	height: 90px;
+	margin: 20px 0px 20px 20px;
+	/* 文字显示限制 */
+	display: -webkit-box;
+	/* 超过5行显示省略 */
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* 详情按钮 */
+.newsBtn {
+	margin: 28px 10px 0px 30px;
+	width: 80px!important;
+	font-weight: bold;
+	border-radius: 5px;
+	float: left;
+}
+
+
+
+/* 发布日期 */
+.newsDate {
+	font-size: 1em;
+	color: gray;
+	margin: 10px 20px 10px 20px;
+	float: right;
+}
+
+/* 信息来源 */
+.newsAuthor {
+	font-size: 1em;
+	margin: 10px 0px 10px 0px;
+	float: right;
+	cursor: pointer;
+	color: gray;
+
+}
+
+/* 热点话题 */
+#hotTopic {
+	padding: 20px;
+	border-radius: 10px;
+}
+
+/* 热点话题的标题 */
+#HTtitle {
+	margin: 0px auto;
+	text-align: center;
+	font-size: 28px;
+	color: black;
+	cursor: pointer;
+	transition: all 0.6s;
+}
+/* 鼠标移入将标题字色该红 */
+#HTtitle:hover {
+	color: red;
+}
+
+/* 单个话题 */
+.HT {
+	margin: 10px auto;
+	padding: 5px;
+	cursor: pointer;
+}
+
+/* 话题图片 */
+.HTpic {
+	height: 50px;
+	width: 50px;
+	border: #9F9F9F solid 1px;
+	border-radius: 5px;
+	transition: all 0.6s;
+}
+/* 鼠标移入图片变大 */
+.HTpic:hover {
+	transform: scale(1.05);
+}
+
+/* 话题关键字 */
+.HTkeyword {
+	margin-top: 5px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* 话题简述 */
+.HTinfo {
+	margin-top: 5px;
+	font-size: 14px;
+	color: #393D49;
+	/* 文字显示限制 */
+	display: -webkit-box;
+	/* 限制1行 */
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+img {
+	height: 100%;
+	width: 100%;
+}

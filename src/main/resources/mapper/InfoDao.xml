@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.dao.InfoDao">
+    <select id="queryAllInfo" resultType="com.vo.VeiwInfo">
+        SELECT
+        i.info_id,
+        i.title,
+        i.info_content,
+        i.info_img,
+        i.info_from,
+        i.create_time,
+        i.admin_id,
+        a.admin_name
+        FROM
+        tb_info i,
+        tb_admin a
+        WHERE
+        i.admin_id=a.admin_id
+    </select>
+
+
+    <select id="queryByInfoId" parameterType="integer" resultType="com.vo.VeiwInfo">
+         SELECT
+        i.info_id,
+        i.title,
+        i.info_content,
+        i.info_img,
+        i.info_from,
+        i.create_time,
+        i.admin_id,
+        a.admin_name
+        FROM
+        tb_info i,
+        tb_admin a
+         WHERE
+        i.admin_id=a.admin_id
+        AND
+        i.info_id=#{infoId}
+
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

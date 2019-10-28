@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper文件用于Mybatis文件的dao操作 -->
+<mapper namespace="com.dao.LogDao">
+    <insert id="insertLog" parameterType="com.entity.Log" useGeneratedKeys="true" keyProperty="logId"
+            keyColumn="log_id">
+        INSERT into tb_log
+        (log_id,user_name,createdate,content,operation,type)
+        values
+        (#{logId},#{username},#{createdate},#{content},#{operation},#{type});
+    </insert>
+</mapper>
