@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReplyDao">
+
+    <select id="queryRelyByUserId" resultType="com.vo.VeiwMovieReply">
+        SELECT
+        r.reply_id,c.comment_id,c.content,
+        rcontent,r.create_time,r.state,
+        r.parent_id,u.user_name,u.user_img
+        FROM
+        tb_comment_reply r,
+        tb_user u,
+        tb_movie_comment c
+        WHERE
+        r.parent_id=#{userId}
+        AND
+        r.user_id=u.user_id
+        AND
+		c.comment_id=r.comment_id
+        AND
+        r.state=0
+    </select>
+
+
+    <insert id="inserMovieReply" useGeneratedKeys="true" keyProperty="replyId" keyColumn="reply_id">
+      INSERT INTO tb_comment_reply
+      (reply_id,user_id,comment_id,rcontent,create_time,state,parent_id)
+      VALUES
+      (#{replyId},#{user.userId},#{movieComment.commentId},#{rcontent},#{createTime},#{state},#{movieComment.user.userId});
+   </insert>
+
+    <update id="delectMovieReply" parameterType="com.entity.MovieReply">
+        UPDATE tb_comment_reply
+        SET
+        state =1
+        WHERE
+        comment_id = #{movieComment.commentId}
+        AND
+        user_id = #{user.userId}
+    </update>
+
+
+</mapper>
