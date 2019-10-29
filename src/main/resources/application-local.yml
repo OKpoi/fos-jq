@@ -1,0 +1,49 @@
+#运行端口
+server:
+  port: 8080
+
+#环境
+Env:
+  name: Local
+
+spring:
+  application:
+    name: fos
+
+  #开启热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: resources/**
+
+  # jdbc_config
+  datasource:
+    url: jdbc:mysql://localhost:3306/fos-local?useUnicode=true&characterEncoding=utf8
+    # Hikari will use the above plus the following to setup connection pooling
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 3000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 3000
+      connection-test-query: SELECT 1
+
+  servlet:
+    multipart:
+      file-size-threshold: 10485760
+      max-file-size: 1MB
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+    view:
+      prefix: /
+      suffix: /html
+mybatis:
+  config-location: classpath:conf/mybatis-config.xml

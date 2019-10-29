@@ -1,11 +1,10 @@
 package com.fos.entity.user;
 
-import lombok.Data;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import lombok.Data;
 
 @Data
 @Table(name = "tb_user")
