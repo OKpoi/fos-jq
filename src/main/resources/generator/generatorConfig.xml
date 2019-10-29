@@ -1,6 +1,6 @@
 <!DOCTYPE generatorConfiguration
-        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
     <properties resource="generator/config.properties"/>
@@ -16,22 +16,22 @@
         </plugin>
 
         <jdbcConnection driverClass="${jdbc.driverClass}"
-                        connectionURL="${jdbc.url}"
-                        userId="${jdbc.user}"
-                        password="${jdbc.password}">
+          connectionURL="${jdbc.url}"
+          userId="${jdbc.user}"
+          password="${jdbc.password}">
         </jdbcConnection>
 
         <!--实体-->
         <javaModelGenerator targetPackage="com.fos.entity.${moduleName}"
-                            targetProject="src/main/java"/>
+          targetProject="src/main/java"/>
 
         <!--mapper.xml-->
         <sqlMapGenerator targetPackage="mapper.${moduleName}"
-                         targetProject="src/main/resources"/>
+          targetProject="src/main/resources"/>
         <!--mapper接口-->
         <javaClientGenerator targetPackage="com.fos.dao.${moduleName}"
-                             targetProject="src/main/java"
-                             type="XMLMAPPER"/>
+          targetProject="src/main/java"
+          type="XMLMAPPER"/>
 
         <table tableName="${tableName}">
             <generatedKey column="id" sqlStatement="JDBC"/>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fos.dao.reply.TbCommentReplyMapper">
+  <resultMap id="BaseResultMap" type="com.fos.entity.reply.TbCommentReply">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="reply_id" jdbcType="INTEGER" property="replyId" />
+    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="rcontent" jdbcType="VARCHAR" property="rcontent" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+</mapper>
