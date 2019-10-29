@@ -1,9 +1,10 @@
 package com.fos.entity.movietype;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Data;
 
 @Data
 @Table(name = "tb_movie_type")

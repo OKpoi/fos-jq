@@ -1,10 +1,11 @@
 package com.fos.entity.log;
 
-import java.util.Date;
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Data;
+import java.util.Date;
 
 @Data
 @Table(name = "tb_log")

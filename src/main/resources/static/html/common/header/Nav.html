@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nav</title>
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
+</head>
+<body>
+<ul class="layui-nav">
+    <li class="layui-nav-item">
+        <a href="">首页<span class="layui-badge">9</span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="">分类<span class="layui-badge-dot"></span></a>
+        <dl class="layui-nav-child">
+        </dl>
+    </li>
+    <li class="layui-nav-item">
+        <a href="">电影库<span class="layui-badge">9</span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+        <dl class="layui-nav-child">
+            <dd><a href="javascript:;">修改信息</a></dd>
+            <dd><a href="javascript:;">安全管理</a></dd>
+            <dd><a href="javascript:;">退了</a></dd>
+        </dl>
+    </li>
+</ul>
+
+<script src="../../../layui/layui.all.js"></script>
+<script>
+    $ = layui.$;
+
+    $.get('/api/movietype/allmovietype', function (data, err) {
+        var res = data.data;
+        $.each(res, function (index, item) {
+            $('.layui-nav-child').append(' <dd><a href="javascript:;"' + item.typeId + '">' + item.typeName + '</a></dd>')
+        })
+    })
+
+</script>
+
+</body>
+</html>

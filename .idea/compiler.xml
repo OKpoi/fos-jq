@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fos" />
+        <module name="fos-jq" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="fos" target="1.8" />
+      <module name="fos-jq" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="fos" options="-parameters" />
+      <module name="fos-jq" options="-parameters" />
     </option>
   </component>
 </project>
