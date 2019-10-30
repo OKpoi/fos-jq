@@ -4,31 +4,28 @@ server:
 
 #环境
 Env:
-  name: Local
+  name: Dev
 
 spring:
   application:
     name: fos
 
-  thymeleaf:
-    cache: false
-
   #开启热部署
   devtools:
     restart:
       enabled: true
-      additional-paths: src/main/java/**,static/**
-      exclude:  src/main/java/dao**
+      additional-paths: src/main/java , resources/static/**
+      exclude: resources/**
 
   # jdbc_config
   datasource:
-    url: jdbc:mysql://localhost:3306/fos?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://47.94.252.89:3306/fos_local?useUnicode=true&characterEncoding=utf8
     # Hikari will use the above plus the following to setup connection pooling
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: root
+      password: root123456789
       minimum-idle: 5
       maximum-pool-size: 15
       auto-commit: true
