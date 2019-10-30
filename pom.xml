@@ -20,13 +20,21 @@
 
     <profiles>
         <profile>
-            <id>local</id>
-            <properties>
+        <id>local</id>
+        <properties>
 
-                <profileActive>local</profileActive>
+            <profileActive>local</profileActive>
+        </properties>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+    </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
             </properties>
             <activation>
-                <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
         <profile>
@@ -117,6 +125,7 @@
                 <configuration>
                     <!--springboot启动类目录-->
                     <mainClass>com.fos.FosApplication</mainClass>
+                    <fork>true</fork>
                 </configuration>
                 <executions>
                     <execution>

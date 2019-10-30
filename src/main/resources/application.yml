@@ -1,12 +1,3 @@
-#运行端口
-server:
-  port: 8080
-
-#环境
-Env:
-  name: @profileActive@
-
-
 spring:
   profiles:
     active: @profileActive@
