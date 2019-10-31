@@ -1,20 +1,17 @@
 package com.fos.entity.movietype;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 @Data
-@Table(name = "tb_movie_type")
+@TableName("tb_movie_type")
 public class TbMovieType {
   /** 类型ID */
-  @Id
-  @Column(name = "type_id")
+  @TableId(type = IdType.AUTO)
   private Integer typeId;
 
   /** 类型名字 */
-  @Column(name = "type_name")
   private String typeName;
 }

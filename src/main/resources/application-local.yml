@@ -48,5 +48,7 @@ spring:
     view:
       prefix: /
       suffix: .html
-mybatis:
+mybatis-plus:
+  type-aliases-package: com.fos.entity
+  mapper-locations: classpath:mapper/*.xml
   config-location: classpath:conf/mybatis-config.xml

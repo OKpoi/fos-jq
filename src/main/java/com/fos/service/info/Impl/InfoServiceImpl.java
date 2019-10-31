@@ -5,11 +5,12 @@ import com.fos.entity.info.TbInfo;
 import com.fos.enums.info.InfoEnums;
 import com.fos.exception.CustomerException;
 import com.fos.service.info.InfoService;
-import java.util.List;
-import java.util.Objects;
-import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -26,32 +27,14 @@ public class InfoServiceImpl implements InfoService {
         && tbInfoMapperHeadLineInfoOnTheIndexPageList.size() > 0) {
       return tbInfoMapperHeadLineInfoOnTheIndexPageList;
     } else {
-      throw new CustomerException(InfoEnums.HEADLINE_NOT_FOUND.getCode(),InfoEnums.HEADLINE_NOT_FOUND.getMsg());
+      log.error("==================Exception====================");
+      log.error(
+          InfoServiceImpl.class.getSimpleName()
+              + "-> findHeadLineInfoOnTheIndexPage -> "
+              + InfoEnums.HEADLINE_NOT_FOUND.getMsg());
+      log.error("===============================================");
+      throw new CustomerException(
+          InfoEnums.HEADLINE_NOT_FOUND.getCode(), InfoEnums.HEADLINE_NOT_FOUND.getMsg());
     }
-  }
-
-  @Override
-  public TbInfo findById(Integer id) {
-    return null;
-  }
-
-  @Override
-  public TbInfo findOne(TbInfo tbInfo) {
-    return null;
-  }
-
-  @Override
-  public List<TbInfo> findAll() {
-    return null;
-  }
-
-  @Override
-  public Boolean update(TbInfo tbInfo) {
-    return null;
-  }
-
-  @Override
-  public Boolean insert(TbInfo tbInfo) {
-    return null;
   }
 }

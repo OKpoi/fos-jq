@@ -1,7 +1,6 @@
 package com.fos.dao.reply;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.reply.TbCommentReply;
-import tk.mybatis.mapper.common.Mapper;
 
-public interface TbCommentReplyMapper extends Mapper<TbCommentReply> {
-}
+public interface TbCommentReplyMapper extends BaseMapper<TbCommentReply> {}

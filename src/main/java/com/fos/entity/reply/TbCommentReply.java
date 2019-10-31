@@ -1,38 +1,33 @@
 package com.fos.entity.reply;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "tb_comment_reply")
+@TableName("tb_comment_reply")
 public class TbCommentReply {
   /** 影评回复id */
-  @Id
-  @Column(name = "reply_id")
+  @TableId(type = IdType.AUTO)
   private Integer replyId;
 
   /** 评论ID */
-  @Column(name = "comment_id")
   private Integer commentId;
 
   /** 内容 */
   private String rcontent;
 
   /** 时间 */
-  @Column(name = "create_time")
   private Date createTime;
 
   /** 删除与否(0-没删除,1-删除) */
   private Integer state;
 
-  @Column(name = "parent_id")
   private Integer parentId;
 
   /** 回复用户id */
-  @Column(name = "user_id")
   private Integer userId;
 }

@@ -1,7 +1,6 @@
 package com.fos.dao.stars;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.stars.TbStars;
-import tk.mybatis.mapper.common.Mapper;
 
-public interface TbStarsMapper extends Mapper<TbStars> {
-}
+public interface TbStarsMapper extends BaseMapper<TbStars> {}

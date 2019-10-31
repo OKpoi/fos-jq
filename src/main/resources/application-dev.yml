@@ -44,8 +44,7 @@ spring:
     view:
       prefix: /
       suffix: .html
-mapper:
-  mappers: tk.mybatis.mapper.common.Mapper
-  not-empty: false
-  identity: MYSQL
-  style: camelhump
+mybatis-plus:
+  type-aliases-package: com.fos.entity
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:conf/mybatis-config.xml
