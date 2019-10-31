@@ -4,5 +4,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.user.TbUser;
 
 public interface TbUserMapper extends BaseMapper<TbUser> {
-  TbUser selectOneUser(TbUser tbUser);
+  TbUser selectOneUserToLogin(TbUser tbUser);
 }

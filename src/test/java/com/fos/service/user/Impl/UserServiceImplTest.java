@@ -18,43 +18,54 @@ class UserServiceImplTest {
   @Resource private UserService userService;
 
   private LoginVO loginVO;
+  private TbUser tbUser;
 
   @BeforeEach
-  void setUp() {
+  void mockUp() {
     loginVO =
-        LoginVO.builder().userId("lomofu").password("6ee9118a9edc61838c152ff10b66c07c").build();
+        LoginVO.builder().userId("lomofu").password("f49a421b2949039bb45e0c5014eb1daf").build();
+    tbUser = TbUser.builder().userId(1004).userName("lomofu").email("2357650152@qq.com").build();
   }
 
   @Test
-  void findUserByLoginVOToLogin() {
+  void should_return_username_lomofu_email_2357_when_findUserByLoginVOToLogin() {
     TbUser userByLoginVOToLogin = userService.findUserByLoginVOToLogin(loginVO);
 
     Assert.assertNotNull(userByLoginVOToLogin);
-    Assert.assertEquals(userByLoginVOToLogin.getUserName(), "lomofu");
-    Assert.assertEquals(userByLoginVOToLogin.getEmail(), "2357650152@qq.com");
+    Assert.assertEquals("lomofu", userByLoginVOToLogin.getUserName());
+    Assert.assertEquals("2357650152@qq.com", userByLoginVOToLogin.getEmail());
   }
 
   @Test
-  void loginByAndBuild() {
-
-    UserServiceImpl userServiceImp = new UserServiceImpl();
+  void should_return_lomofu_when_loginByAndBuild_use_lomofuVO() {
     try {
-      Class[] cAgr = new Class[2];
-      Object[] oAgr = new Object[2];
-      cAgr[0] = String.class;
-      cAgr[1] = String.class;
-      oAgr[0] = loginVO.getUserId();
-      oAgr[1] = loginVO.getPassword();
-      Method loginByAndBuild = userServiceImp.getClass().getDeclaredMethod("loginByAndBuild", cAgr);
-      System.out.println(loginByAndBuild.getName());
+      Method loginByAndBuild =
+          userService
+              .getClass()
+              .getDeclaredMethod("loginByAndBuild", new Class[] {String.class, String.class});
       loginByAndBuild.setAccessible(true);
-      loginByAndBuild.invoke(String.class, oAgr);
+      Object invoke =
+          loginByAndBuild.invoke(
+              userService.getClass().newInstance(), loginVO.getUserId(), loginVO.getPassword());
+      TbUser tbUser = (TbUser) invoke;
+      Assert.assertNotNull(tbUser);
+      Assert.assertEquals("lomofu", tbUser.getUserName());
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (IllegalAccessException e) {
       e.printStackTrace();
     } catch (InvocationTargetException e) {
       e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
     }
+  }
+
+  @Test
+  void should_return_lomofuinfo_when_findUserByUserId_1004() {
+    TbUser userByUserId = userService.findUserByUserId(tbUser.getUserId());
+    Assert.assertNotNull(userByUserId);
+    Assert.assertEquals("lomofu", userByUserId.getUserName());
+    Assert.assertEquals("2357650152@qq.com", userByUserId.getEmail());
   }
 }

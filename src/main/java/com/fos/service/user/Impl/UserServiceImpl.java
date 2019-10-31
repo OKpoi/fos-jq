@@ -6,14 +6,18 @@ import com.fos.enums.RestResultEnums;
 import com.fos.enums.user.UserEnums;
 import com.fos.exception.CustomerException;
 import com.fos.service.user.UserService;
+import com.fos.util.LogHelper;
 import com.fos.util.MD5Helper;
 import com.fos.vo.LoginVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,41 +42,81 @@ public class UserServiceImpl implements UserService {
       String password = MD5Helper.passwordMD5(loginVO.getPassword());
       TbUser tbUser = loginByAndBuild(username, password);
 
-      TbUser resultUser = tbUserMapper.selectOneUser(tbUser);
+      TbUser resultUser = tbUserMapper.selectOneUserToLogin(tbUser);
       if (Objects.nonNull(resultUser)) {
         if (StringUtils.hasLength(resultUser.getPassword())
             && resultUser.getPassword().equals(password)) {
           return resultUser;
         } else {
-          log.error("==================Exception====================");
-          log.error(
-              UserService.class.getSimpleName()
-                  + "-> findUserByLoginVOToLogin -> "
-                  + UserEnums.EORROR_USERNAME_OR_PASSWORD.getMsg());
-          log.error("===============================================");
+          LogHelper.createCustomeExcpetionLog(
+              UserService.class.getSimpleName(),
+              "findUserByLoginVOToLogin",
+              UserEnums.EORROR_USERNAME_OR_PASSWORD.getMsg());
           throw new CustomerException(
               UserEnums.EORROR_USERNAME_OR_PASSWORD.getCode(),
               UserEnums.EORROR_USERNAME_OR_PASSWORD.getMsg());
         }
       } else {
-        log.error("==================Exception====================");
-        log.error(
-            UserService.class.getSimpleName()
-                + "-> findUserByLoginVOToLogin -> "
-                + UserEnums.USER_IS_NOT_HAVE.getMsg());
-        log.error("===============================================");
+        LogHelper.createCustomeExcpetionLog(
+            UserServiceImpl.class.getSimpleName(),
+            "findUserByLoginVOToLogin",
+            UserEnums.USER_IS_NOT_HAVE.getMsg());
         throw new CustomerException(
             UserEnums.USER_IS_NOT_HAVE.getCode(), UserEnums.USER_IS_NOT_HAVE.getMsg());
       }
     } else {
-      log.error("==================Exception====================");
-      log.error(
-          UserService.class.getSimpleName()
-              + "-> findUserByLoginVOToLogin -> "
-              + RestResultEnums.FAIL.getMsg());
-      log.error("===============================================");
+      LogHelper.createCustomeExcpetionLog(
+          UserService.class.getSimpleName(),
+          "findUserByLoginVOToLogin",
+          RestResultEnums.FAIL.getMsg());
       throw new CustomerException(RestResultEnums.FAIL.getCode(), RestResultEnums.FAIL.getMsg());
     }
+  }
+
+  @Override
+  public TbUser findUserByUserId(Integer userId) throws CustomerException {
+    TbUser tbUser = tbUserMapper.selectById(userId);
+    if (Objects.nonNull(tbUser)) {
+      return tbUser;
+    } else {
+      LogHelper.createCustomeExcpetionLog(
+          UserServiceImpl.class.getSimpleName(),
+          "findUserByUserId",
+          UserEnums.USER_IS_NOT_HAVE.getMsg());
+      throw new CustomerException(
+          UserEnums.USER_IS_NOT_HAVE.getCode(), UserEnums.USER_IS_NOT_HAVE.getMsg());
+    }
+  }
+
+  @Override
+  @Transactional(rollbackFor = RuntimeException.class)
+  public TbUser insert(TbUser tbUser)
+      throws CustomerException, ExecutionException, InterruptedException {
+    log.info("================begin to insert a new user==================");
+
+    boolean tbUserCompletableFuture =
+        CompletableFuture.supplyAsync(() -> tbUserMapper.insert(tbUser))
+            .thenApply(integer -> tbUserMapper.selectById(integer))
+            .complete(tbUser);
+
+    if (tbUserCompletableFuture) {
+      log.info("====================success to create a new ================");
+      return tbUser;
+    } else {
+      LogHelper.createCustomeExcpetionLog(
+          UserServiceImpl.class.getSimpleName(), "insert", UserEnums.INSERT_ERROR.getMsg());
+      throw new CustomerException(
+          UserEnums.INSERT_ERROR.getCode(), UserEnums.INSERT_ERROR.getMsg());
+    }
+  }
+
+  @Override
+  @Transactional(rollbackFor = RuntimeException.class)
+  public TbUser update(TbUser tbUser) {
+   CompletableFuture.supplyAsync(()->tbUserMapper.update(tbUser)).thenApply()
+    if (update > 0) {}
+
+    return null;
   }
 
   private TbUser loginByAndBuild(String username, String password) {

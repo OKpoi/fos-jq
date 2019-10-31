@@ -18,7 +18,7 @@
         <result column="user_type" jdbcType="INTEGER" property="userType"/>
     </resultMap>
 
-    <select id="selectOneUser" resultMap="BaseResultMap">
+    <select id="selectOneUserToLogin" resultMap="BaseResultMap">
         SELECT * FROM tb_user WHERE
         <choose>
             <when test="email!=null and email!=''">

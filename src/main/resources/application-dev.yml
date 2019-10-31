@@ -1,6 +1,6 @@
 #运行端口
 server:
-  port: 8080
+  port: 8081
 
 #环境
 Env:
