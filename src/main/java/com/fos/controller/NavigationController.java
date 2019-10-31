@@ -1,4 +1,4 @@
-package com.fos.controller.movietype;
+package com.fos.controller;
 
 import com.fos.common.Constant;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,6 @@
 package com.fos.dao.movietype;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.movietype.TbMovieType;
-import tk.mybatis.mapper.common.Mapper;
 
-public interface TbMovieTypeMapper extends Mapper<TbMovieType> {
-}
+public interface TbMovieTypeMapper extends BaseMapper<TbMovieType> {}

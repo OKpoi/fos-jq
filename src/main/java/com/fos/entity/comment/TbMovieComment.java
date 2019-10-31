@@ -1,33 +1,29 @@
 package com.fos.entity.comment;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "tb_movie_comment")
+@TableName("tb_movie_comment")
 public class TbMovieComment {
   /** 评论ID */
-  @Id
-  @Column(name = "comment_id")
+  @TableId(type = IdType.AUTO)
   private Integer commentId;
 
   /** 电影ID参看Movie表 */
-  @Column(name = "movie_id")
   private Integer movieId;
 
   /** 用户ID参考User表 */
-  @Column(name = "user_id")
   private Integer userId;
 
   /** 内容 */
   private String content;
 
   /** 时间 */
-  @Column(name = "create_time")
   private Date createTime;
 
   /** 评分(从低到高 1-5) */

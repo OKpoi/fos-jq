@@ -1,7 +1,6 @@
 package com.fos.dao.log;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.log.TbLog;
-import tk.mybatis.mapper.common.Mapper;
 
-public interface TbLogMapper extends Mapper<TbLog> {
-}
+public interface TbLogMapper extends BaseMapper<TbLog> {}
