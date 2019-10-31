@@ -34,7 +34,6 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 3000
       connection-test-query: SELECT 1
-
   servlet:
     multipart:
       file-size-threshold: 10485760
@@ -45,5 +44,8 @@ spring:
     view:
       prefix: /
       suffix: .html
-mybatis:
-  config-location: classpath:conf/mybatis-config.xml
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+  style: camelhump

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/fos-jq.iml" filepath="$PROJECT_DIR$/fos-jq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fos-jq.iml" filepath="$PROJECT_DIR$/.idea/fos-jq.iml" />
     </modules>
   </component>
 </project>

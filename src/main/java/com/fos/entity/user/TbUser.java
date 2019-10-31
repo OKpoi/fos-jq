@@ -1,18 +1,21 @@
 package com.fos.entity.user;
 
-import lombok.Data;
-
+import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
+@Builder
 @Table(name = "tb_user")
 public class TbUser {
   /** 用户id */
   @Id
   @Column(name = "user_id")
+  @GeneratedValue(generator = "JDBC")
   private Integer userId;
 
   /** 用户名 */
