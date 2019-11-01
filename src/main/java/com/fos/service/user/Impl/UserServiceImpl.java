@@ -11,13 +11,6 @@ import com.fos.util.LoggerHelper;
 import com.fos.util.MD5Helper;
 import com.fos.vo.LoginVO;
 import com.fos.vo.UserVO;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.annotation.Resource;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -25,6 +18,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author FULO2
@@ -100,12 +100,11 @@ public class UserServiceImpl implements UserService {
         TbUser tbUser = TbUser.builder().build();
         log.info("================begin to insert a new user==================");
         if (Objects.nonNull(userVO)) {
-            // CompletableFuture.supplyAsync(() ->);
 
             BeanUtils.copyProperties(userVO, tbUser);
             tbUser.setState(0);
             tbUser.setUserType(0);
-            tbUser.setCreateTime(new Date());
+//            tbUser.setCreateTime(new Da);
             tbUser.setPassword(MD5Helper.passwordMD5(userVO.getPassword()));
             int row = tbUserMapper.insert(tbUser);
             if (row > 0) {

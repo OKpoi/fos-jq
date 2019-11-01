@@ -4,15 +4,16 @@ import com.fos.entity.user.TbUser;
 import com.fos.service.user.UserService;
 import com.fos.vo.LoginVO;
 import com.fos.vo.UserVO;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Date;
-import javax.annotation.Resource;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+
+import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.Date;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -31,7 +32,7 @@ class UserServiceImplTest {
                 LoginVO.builder().userId("lomofu").password("f49a421b2949039bb45e0c5014eb1daf").build();
         tbUser =
                 TbUser.builder()
-                        .userId(1006)
+                        .userId(1004)
                         .userName("lomofu")
                         .email("2357650152@qq.com")
                         .state(1)
@@ -54,7 +55,7 @@ class UserServiceImplTest {
                         .email("ellie@qq.com")
                         .phone("1111")
                         .userImg("/user")
-                        .createTime(new Date())
+                        .createTime(new Date(123456789L))
                         .sex(1)
                         .age(Short.valueOf("15"))
                         .userType(1)
