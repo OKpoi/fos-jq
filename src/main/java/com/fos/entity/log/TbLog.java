@@ -1,21 +1,19 @@
 package com.fos.entity.log;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "tb_log")
+@TableName("tb_log")
 public class TbLog {
-  @Id
-  @Column(name = "log_id")
+  @TableId(type = IdType.AUTO)
   private Long logId;
 
   /** 用户名 */
-  @Column(name = "user_name")
   private String userName;
 
   /** 创建日期 */

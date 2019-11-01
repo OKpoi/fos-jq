@@ -1,7 +1,6 @@
 package com.fos.dao.rank;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.rank.TbRank;
-import tk.mybatis.mapper.common.Mapper;
 
-public interface TbRankMapper extends Mapper<TbRank> {
-}
+public interface TbRankMapper extends BaseMapper<TbRank> {}

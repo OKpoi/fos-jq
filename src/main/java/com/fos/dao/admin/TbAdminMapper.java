@@ -1,7 +1,7 @@
 package com.fos.dao.admin;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fos.entity.admin.TbAdmin;
-import tk.mybatis.mapper.common.Mapper;
 
 /** */
-public interface TbAdminMapper extends Mapper<TbAdmin> {}
+public interface TbAdminMapper extends BaseMapper<TbAdmin> {}
