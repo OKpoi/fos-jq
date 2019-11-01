@@ -5,14 +5,14 @@ import com.fos.entity.movietype.TbMovieType;
 import com.fos.enums.movietype.MovieTypeEnums;
 import com.fos.exception.CustomerException;
 import com.fos.service.movietype.MovieTypeService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.fos.util.LoggerHelper;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /** @author lomofu */
 @Slf4j
@@ -28,12 +28,10 @@ public class MovieTypeServiceImpl implements MovieTypeService {
     if (!Objects.isNull(tbMovieTypeList) && tbMovieTypeList.size() > 0) {
       return new HashSet<>(tbMovieTypeList);
     } else {
-      log.error("==================Exception====================");
-      log.error(
-          MovieTypeServiceImpl.class.getSimpleName()
-              + "-> findAllMovieTypeList -> "
-              + MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
-      log.error("===============================================");
+      LoggerHelper.createCustomeExcpetionLog(
+          MovieTypeServiceImpl.class.getSimpleName(),
+          "findAllMovieTypeList",
+          MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
       throw new CustomerException(
           MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getCode(),
           MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
