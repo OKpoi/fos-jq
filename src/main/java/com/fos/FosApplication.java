@@ -15,17 +15,23 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan("com.fos.dao")
 public class FosApplication {
 
-  private static String name;
+    private static String name;
 
-  @Value("${Env.name}")
-  public void setName(String data) {
-    name = data;
-  }
+    @Value("${Env.name}")
+    public void setName(String data) {
+        name = data;
+    }
 
-  public static void main(String[] args) {
-    SpringApplication.run(FosApplication.class, args);
-    log.info("======================================");
-    log.info("   环境:  " + name);
-    log.info("======================================");
-  }
+//    @Value("${Env.fileUpLoadPath}")
+//    public void setPathList(List<String> data) {
+//        PathList = data;
+//    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(FosApplication.class, args);
+        log.info("======================================");
+        log.info("   环境:  " + name);
+        log.info("   系统:  " + System.getProperty("os.name"));
+        log.info("======================================");
+    }
 }
