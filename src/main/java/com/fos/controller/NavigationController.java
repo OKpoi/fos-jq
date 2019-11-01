@@ -1,6 +1,6 @@
 package com.fos.controller;
 
-import com.fos.common.Constant;
+import com.fos.common.ConstantURL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class NavigationController {
 
-  @GetMapping
-  public String defaultPage() {
-    return Constant.INDEX;
-  }
+    @GetMapping
+    public String defaultPage() {
+        return ConstantURL.INDEX;
+    }
 
-  @GetMapping("/index")
-  public String index() {
-    return Constant.INDEX;
-  }
+    @GetMapping("/index")
+    public String index() {
+        return ConstantURL.INDEX;
+    }
 
-  @GetMapping("/nav")
-  public String nav() {
-    return Constant.NAV;
-  }
+    @GetMapping("/nav")
+    public String nav() {
+        return ConstantURL.NAV;
+    }
 }

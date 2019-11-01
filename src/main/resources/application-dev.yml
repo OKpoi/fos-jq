@@ -5,6 +5,9 @@ server:
 #环境
 Env:
   name: Dev
+  fileUpLoadPath:
+    - OnWin: D:/fos-resources/img
+    - OnLinix: /home/fos-resources/img
 
 spring:
   application:

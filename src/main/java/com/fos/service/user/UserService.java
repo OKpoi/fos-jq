@@ -2,15 +2,16 @@ package com.fos.service.user;
 
 import com.fos.entity.user.TbUser;
 import com.fos.vo.LoginVO;
-
-import java.util.concurrent.ExecutionException;
+import com.fos.vo.UserVO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
-  TbUser findUserByLoginVOToLogin(LoginVO loginVO);
 
-  TbUser findUserByUserId(Integer userId);
+    TbUser findUserByLoginVOToLogin(LoginVO loginVO);
 
-  TbUser insert(TbUser tbUser) throws ExecutionException, InterruptedException;
+    TbUser findUserByUserId(Integer userId);
 
-  TbUser update(TbUser tbUser);
+    TbUser insert(UserVO userVO, MultipartFile file);
+
+    TbUser update(TbUser tbUser);
 }
