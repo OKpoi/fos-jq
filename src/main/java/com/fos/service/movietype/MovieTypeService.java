@@ -6,4 +6,5 @@ import java.util.Set;
 
 public interface MovieTypeService {
   Set<TbMovieType> findAllMovieTypeList();
+  TbMovieType findMovieTypeById(Integer typeId);
 }

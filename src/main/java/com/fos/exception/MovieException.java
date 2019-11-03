@@ -1,4 +1,13 @@
 package com.fos.exception;
 
-public class MovieException {
+import lombok.Getter;
+
+public class MovieException extends RuntimeException {
+    @Getter
+    private Integer code;
+
+    public MovieException(Integer code, String msg) {
+        super(msg);
+        this.code = code;
+    }
 }
