@@ -4,36 +4,505 @@
     <meta charset="UTF-8">
     <title>Nav</title>
     <link rel="stylesheet" href="../../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/common/header/nav.css">
+    <link href="../../../layui_exts/step/step-lay/step.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/common/hover-min.css">
+    <link rel="stylesheet" href="../../../css/common/animate.min.css">
 </head>
 <body>
 
+<div id="background-res" class="layui-anim animated fadeInDown" style="display: none">
+    <div style="box-shadow: 0px 20px 20px 0px #0000009e ">
+        <div class="layui-anim-scale register-form">
+            <div class="layui-card">
+                <div class="layui-card-header" style="text-align: center;font-size: larger;font-weight: bolder"><h3>注
+                    册</h3>
+                </div>
+                <div class="layui-card-body" style="padding-top: 40px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                        <div carousel-item>
+                            <div>
+                                <div>
+                                    <div id="text" style="color:grey;text-align: center"><h4>欢迎加入,Assessment社区！</h4>
+                                    </div>
+                                </div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 500px;padding-top: 20px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名:</label>
+                                        <div class="layui-input-block">
+                                            <input id="user-name" type="text" placeholder="请输入用户名"
+                                                   class="layui-input hvr-glow"
+                                                   lay-verType="tips"
+                                                   lay-verify="required|username"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">性别:</label>
+                                        <div class="layui-input-block">
+                                            <input type="radio" name="sex" value="男" title="男" checked>
+                                            <input type="radio" name="sex" value="女" title="女">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">年龄:</label>
+                                        <div class="layui-input-block">
+                                            <input id="age"
+                                                   type="number" placeholder="请输入年龄"
+                                                   class="layui-input hvr-glow"
+                                                   lay-verify="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">邮箱:</label>
+                                        <div class="layui-input-block">
+                                            <input id="email"
+                                                   type="text"
+                                                   name="email"
+                                                   lay-verify="email|required"
+                                                   lay-verType="tips"
+                                                   placeholder="请输入邮箱"
+                                                   autocomplete="off" class="layui-input hvr-glow">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">手机:</label>
+                                        <div class="layui-input-block">
+                                            <input id="phone"
+                                                   type="number"
+                                                   lay-verify="phone|required"
+                                                   lay-verType="tips"
+                                                   placeholder="请输入手机号码"
+                                                   autocomplete="off" class="layui-input hvr-glow">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="formStep"
+                                                    style="width: 100px">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                            <button type="reset" class="layui-btn layui-btn-danger"
+                                                    style="width: 100px">
+                                                重置
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br>
+                                <div style="text-align: center">
+                                    <a class="have-account" style="cursor: pointer;color: #9ca8b8">已有账号？</a>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上传头像:</label>
+                                        <div class="layui-input-block">
+                                            <input id="userImg" type="file" name="userImg"
+                                                   class="layui-input hvr-glow layui-icon layui-icon-upload"
+                                                   style="cursor: pointer">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码:</label>
+                                        <div class="layui-input-block">
+                                            <input id="password" type="password" name="password"
+                                                   lay-verify="required|pass"
+                                                   placeholder="请输入密码"
+                                                   autocomplete="off" class="hvr-glow layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">确认密码:</label>
+                                        <div class="layui-input-block">
+                                            <input id="repassword" type="password" name="repassword"
+                                                   lay-verify="required|repass"
+                                                   placeholder="请再次输入密码"
+                                                   autocomplete="off" class="hvr-glow layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre"
+                                                    style="width: 100px">
+                                                上一步
+                                            </button>
+                                            <button class="layui-btn step-2" lay-submit lay-filter="formStep2"
+                                                    style="width: 100px">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="text-align: center">
+                                <div class="check-info">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux check-username"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">性别:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux check-sex"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">年龄:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux check-age"></div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">邮箱:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux check-email">
+                                                <span style="font-size: 18px;color: #333;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">电话:</label>
+                                        <div class="layui-input-block">
+                                            <div class="layui-form-mid layui-word-aux check-phone"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center;margin-top: 50px;">
+                                    <button type="button" class="layui-btn layui-btn-primary pre"
+                                            style="width: 100px">
+                                        上一步
+                                    </button>
+                                    <button class="layui-btn next" style="width: 100px">
+                                        注册
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center;margin-top: 3px;z-index: 999">
+        <i class="layui-icon layui-icon-more-vertical" style="color:#c5c5c5;font-size: 40px"/>
+        <br>
+        <i class="close-btn layui-icon layui-icon-close-fill hvr-grow-rotate"/>
+    </div>
+</div>
+
+<div id="background-login" class="layui-anim animated fadeInDown" style="display: none">
+    <div id="login-body" style="position: relative">
+        <div id="close" class="hvr-buzz-out layui-icon layui-icon-close" style="cursor: pointer"></div>
+        <div id="user" class="layui-icon layui-icon-group"></div>
+        <h2>登录</h2>
+        <br><br><br><br>
+        <form id="form" class="layui-form" style="padding-top: 100px!important;" method="post">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input id="login-user" type="text" name="login-user" required lay-verify="required"
+                           placeholder="请输入用户名或邮箱或手机"
+                           autocomplete="off" class="hvr-glow layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input id="login-password" type="password" name="login-password" required
+                           lay-verify="required"
+                           placeholder="请输入密码"
+                           autocomplete="off" class="hvr-glow layui-input">
+                </div>
+            </div>
+            <br><br>
+            <div class="layui-form-item" id="submit">
+                <div class="layui-input-block ">
+                    <button type="submit" class="layui-btn" lay-submit lay-filter="login1" id="submit-yes">登录
+                    </button>
+                </div>
+            </div>
+            <a class="new-account" style="margin-left: 120px;cursor: pointer;color: #9ca8b8">还没账号？</a>
+            <div class="layui-form-item" id="rem">
+                <label class="layui-form-label"><span style="color: #555555">记住我?</span></label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switchTest">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <ul class="layui-nav">
-    <li class="layui-nav-item">
-        <a href="">首页<span class="layui-badge">9</span></a>
-    </li>
-    <li class="layui-nav-item">
-        <a href="">分类<span class="layui-badge-dot"></span></a>
-        <dl class="layui-nav-child">
-        </dl>
-    </li>
-    <li class="layui-nav-item">
-        <a href="">电影库<span class="layui-badge">9</span></a>
-    </li>
-    <li class="layui-nav-item">
-        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
-    </li>
+    <div class="layui-row layui-col-space4">
+
+        <li class="layui-nav-item">
+            <a href="">首页</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">分类</a>
+            <dl class="layui-nav-child movietype">
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">咨询</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">电影库</a>
+        </li>
+        <li class="layui-nav-item" style="width: 300px;text-align: center;">
+            <div>
+                <input type="text" name="title" placeholder="请输入想要搜索的电影"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </li>
+
+        <span class="layui-col-md-offset6">
+        <span class="info">
+            <li class="layui-nav-item login-info">
+                <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href=""> 个人中心 </a></dd>
+                        <dd><a href=""> 修改信息 </a></dd>
+                        <dd><a href=""> 退出 </a></dd>
+                    </dl>
+            </li>
+            <li class="layui-nav-item notification-icon">
+                <i class="layui-icon layui-icon-spread-left"
+                   style="font-size: 20px;margin-left: auto"></i>
+            </li>
+            <span class="unlogin-btn" style="display: none">
+                 <li class="layui-nav-item">
+                <button type="button"
+                        class="layui-btn layui-btn-radius layui-btn layui-btn-radius layui-btn-normal login-btn ">登陆</button>
+                <button type="button"
+                        class="layui-btn layui-btn-radius layui-btn layui-btn-radius layui-btn-normal register-btn">注册</button>
+                 </li>
+            </span>
+        </span>
+        </span>
+        </span>
+    </div>
 </ul>
-111
+<script src="../../../layui_exts/step/step-lay/step.js"></script>
 <script src="../../../layui/layui.all.js"></script>
 <script>
     $ = layui.$;
+    const form = layui.form;
+
+    let time;
 
     $.get('/api/movietype/allmovietype', function (data, err) {
-        var res = data.data;
+        const res = data.data;
         $.each(res, function (index, item) {
-            $('.layui-nav-child').append(' <dd><a href="javascript:;"' + item.typeId + '">' + item.typeName + '</a></dd>')
+            $('.movietype').append(' <dd><a href="type-' + item.typeId + '">' + item.typeName + '</a></dd>')
         })
+    });
+
+    $('.register-btn').click(() => {
+        $("#background-res").removeClass('animated fadeOutUp');
+        $('#background-res').show();
+    });
+
+    $('.login-btn').click(() => {
+        $("#background-login").removeClass('animated fadeOutUp');
+        $('#background-login').show();
+    });
+
+    $('#close').click(() => {
+        $("#background-login").addClass('animated fadeOutUp');
+    });
+
+    $('.close-btn').click(() => {
+        $("#background-res").addClass('animated fadeOutUp');
+    });
+
+    $('.new-account').click(() => {
+        $("#background-res").removeClass('animated fadeOutUp');
+        $('#background-res').show();
+        $("#background-login").addClass('animated fadeOutUp');
+    });
+
+    $('.have-account').click(() => {
+        $("#background-login").removeClass('animated fadeOutUp');
+        $('#background-login').show();
+        $("#background-res").addClass('animated fadeOutUp');
+    });
+
+    $('#user-name').on('click', function () {
+        let me = this;
+        layer.tips('用户名不能全部为数字或者有特殊字符哦!', me);
+    });
+
+    $('#password').on('click', function () {
+        let me = this;
+        layer.tips('密码必须6到12位，且不能出现空格!', me);
+    });
+    $('#age').on('click', function () {
+        let me = this;
+        layer.tips('年龄在1-120之间哦!', me);
+    });
+
+    $('#phone').on('click', function () {
+        let me = this;
+        layer.tips('暂时只支持大陆手机号码哦!', me);
+    });
+    $('#email').on('click', function () {
+        let me = this;
+        layer.tips('输入正确的email，可以用来登录!', me);
+    });
+    $('#repassword').on('click', function () {
+        let me = this;
+        layer.tips('请确认两次输入密码要一样哦!', me);
+    });
+
+    $('.step-2').click(() => {
+        let tempUsername = $('#user-name').val();
+        let tempSex = $('input:radio').val();
+        let tempAge = $('#age').val();
+        let tempEmail = $('#email').val();
+        let tempPhone = $('#phone').val();
+
+        $('.check-username').text(tempUsername);
+        $('.check-sex').text(tempSex);
+        $('.check-age').text(tempAge);
+        $('.check-email').text(tempEmail);
+        $('.check-phone').text(tempPhone);
+    });
+
+    $('.notification-icon').click((e) => {
+
+        layer.open({
+            type: 1,
+            title: '通知中心',
+            shadeClose: true,
+            shade: false,
+            offset: 'r',
+            maxmin: true, //开启最大化最小化按钮
+            area: ['400px', '500px'],
+            content: '<div style="margin-top: 30px">' +
+                '<ul>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '                <li> 从而映衬出边框投影</li>\n' +
+                '            </ul>' +
+                '</div>'
+        });
+    });
+
+
+    form.verify({
+        username: (value, item) => { //value：表单的值、item：表单的DOM对象
+            if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                return '用户名不能有特殊字符！';
+            }
+            if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                return '用户名首尾不能出现下划线\'_\'！';
+            }
+            if (/^\d+\d+\d$/.test(value)) {
+                return '用户名不能全为数字！';
+            }
+        }
+        , pass: (value) => {
+            if (!/^[\S]{6,12}$/.test(value)) {
+                return '密码必须6到12位，且不能出现空格!';
+            }
+        }
+        , repass: (value, item) => {
+            let pass = $('#password').val();
+            if (value !== pass) {
+                return '您输入的两次密码不一致，请仔细检查!';
+            }
+        }
+    });
+
+    layui.config({
+        base: '../../../layui_exts/layuinotice/dist/',
+    }).extend({
+        notice: 'notice'
+    });
+
+    layui.use(['notice', 'jquery', 'layer', 'form'], function () {
+        const notice = layui.notice;
+        notice.options = {
+            closeButton: true,
+            positionClass: "toast-top-right",
+            showDuration: "500",
+            hideDuration: "1000",
+            timeOut: "1500",
+            extendedTimeOut: "1000",
+            showEasing: "swing",//显示时的动画缓冲方式
+            hideEasing: "linear",//消失时的动画缓冲方式
+            iconClass: 'toast-info', // 自定义图标，有内置，如不需要则传空 支持layui内置图标/自定义iconfont类名
+        };
+
+        notice.warning("成功");
+        notice.info("提示信息：毛都没有...");
+        notice.error("大佬，我咋知道怎么肥四！");
+        notice.success("大佬，我咋知道怎么肥四！");
+    });
+
+    layui.config({
+        base: '../../../layui_exts/step/step-lay/'
+    }).use(['form', 'step'], function () {
+        const $ = layui.$
+            , form = layui.form
+            , step = layui.step;
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%',
+            stepWidth: '750px',
+            height: '500px',
+            stepItems: [{
+                title: '完善资料'
+            }, {
+                title: '还差一步'
+            }, {
+                title: '确认信息'
+            }]
+        });
+
+
+        form.on('submit(formStep)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        form.on('submit(formStep2)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+
+        $('.next').click(function () {
+            step.next('#stepForm');
+        });
     })
+
 
 </script>
 

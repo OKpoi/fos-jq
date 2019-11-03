@@ -9,11 +9,15 @@ import com.fos.exception.CustomerException;
 import com.fos.service.user.UserService;
 import com.fos.util.LoggerHelper;
 import com.fos.util.MD5Helper;
+import com.fos.util.PathGenHelper;
 import com.fos.vo.LoginVO;
 import com.fos.vo.UserVO;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -22,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -81,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public TbUser findUserByUserId(Integer userId) throws CustomerException {
-        TbUser tbUser = tbUserMapper.selectById(userId);
+        TbUser tbUser = tbUserMapper.selectOne(userId);
         if (Objects.nonNull(tbUser)) {
             return tbUser;
         } else {
@@ -95,20 +100,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
-    public TbUser insert(UserVO userVO, MultipartFile file) throws CustomerException {
+    @Transactional(rollbackFor = Exception.class)
+    public TbUser insert(UserVO userVO, MultipartFile file) throws CustomerException, IOException {
         TbUser tbUser = TbUser.builder().build();
         log.info("================begin to insert a new user==================");
         if (Objects.nonNull(userVO)) {
-
             BeanUtils.copyProperties(userVO, tbUser);
             tbUser.setState(0);
             tbUser.setUserType(0);
-//            tbUser.setCreateTime(new Da);
+            tbUser.setCreateTime(new Date());
             tbUser.setPassword(MD5Helper.passwordMD5(userVO.getPassword()));
             int row = tbUserMapper.insert(tbUser);
             if (row > 0) {
                 log.info("====================success to create a new ================");
+                generateUserImgPath(file, tbUser);
                 return tbUser;
             } else {
                 LoggerHelper.createCustomeExcpetionLog(
@@ -123,7 +128,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional(rollbackFor = Exception.class)
     public TbUser update(TbUser tbUser) {
         int update = tbUserMapper.updateById(tbUser);
         if (update > 0) {
@@ -151,14 +156,26 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private String generateUserImgPath(MultipartFile file) {
+    @Async
+    ResponseEntity generateUserImgPath(MultipartFile file, TbUser tbUser) {
         try {
             @Cleanup InputStream fileInputStream = file.getInputStream();
             String fileOriginalFilename = file.getOriginalFilename();
+            String generalImageAndImaePath = PathGenHelper.generalImageAndImaePath(fileOriginalFilename, fileInputStream, tbUser);
+            if (Objects.nonNull(generalImageAndImaePath) && !generalImageAndImaePath.isEmpty()) {
+                tbUser.setUserImg(generalImageAndImaePath);
+                int update = tbUserMapper.updateById(tbUser);
+                if (update > 0) {
+                    return new ResponseEntity(UserEnums.INSERT_IMG_SUCCESS.getMsg(), HttpStatus.OK);
+                } else {
+                    return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            } else {
+                return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return null;
     }
 
 

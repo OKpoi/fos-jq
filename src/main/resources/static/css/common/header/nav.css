@@ -1,0 +1,175 @@
+
+.register-form {
+    z-index: 999;
+    border: 2px solid #e1e1e1;
+    background: rgba(255, 255, 255, 1);
+}
+
+.layui-nav {
+    z-index: 0 !important;
+}
+
+.layui-row layui-col-space4 {
+    text-align: center;
+}
+
+.info {
+    width: 180px;
+}
+
+.login-info {
+    display: block;
+}
+
+h1 {
+    z-index: 999;
+    position: relative;
+    top: 30px;
+
+}
+
+h2 {
+    z-index: 999;
+    position: relative;
+    top: 140px;
+
+}
+
+#login-body {
+    z-index: 999;
+    width: 500px;
+    height: 500px;
+    margin: 100px auto;
+    border: 2px solid #e1e1e1;
+    text-align: center;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 11px 20px 4px #0000009e;
+}
+
+#background-login {
+    z-index: 30;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#close {
+    z-index: 999;
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#front {
+    z-index: 999;
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#user {
+    z-index: 999;
+    font-size: 60px;
+    position: absolute;
+    top: 60px;
+    left: 204px;
+    color: #656565;
+
+}
+
+#form {
+    z-index: 999;
+    width: 400px;
+    height: 300px;
+    text-align: center;
+
+}
+
+#submit-yes {
+    z-index: 999;
+    width: 80px;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#rem {
+
+    width: 100px;
+    z-index: 999;
+    position: absolute;
+    bottom: 5px;
+    left: 150px;
+
+}
+
+#background-res {
+    z-index: 30;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.close-btn {
+    font-size: 40px;
+    color: #ff704f;
+    cursor: pointer;
+}
+
+.check-info {
+    margin: 20px auto;
+    background: #fffad9;
+    max-width: 500px;
+    padding: 10px;
+    box-shadow: 7px 4px 4px 0px rgba(197, 197, 197, 0.73);
+}
+
+.layui-nav {
+    background-color: #7b8b6f;
+}
+
+.layui-btn {
+    background-color: #7b8b6f;
+}
+
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background-color: #96a48b;
+}
+
+.layui-form-radio > i:hover, .layui-form-radioed > i {
+    color: #7b8b6f;
+}
+
+.layui-tab {
+    color: #7b8b6f;
+}
+
+.notification-icon {
+    cursor: pointer;
+    float: right;
+}
+
+.new-content {
+    margin: 20px auto;
+    width: 80%;
+    height: auto;
+}
+
+.layui-layer-title {
+    background: #e0e5df;
+    border-radius: 12px;
+}
+
+.layui-layer-content {
+    text-align: center;
+    border-radius: 12px;
+}
+
+.layui-layer-page {
+    border-radius: 12px;
+}

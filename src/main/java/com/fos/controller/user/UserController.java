@@ -7,14 +7,12 @@ import com.fos.util.RestHelper;
 import com.fos.vo.LoginVO;
 import com.fos.vo.RestVO;
 import com.fos.vo.UserVO;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public RestVO register(@RequestBody UserVO userVO, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+    public RestVO register(@RequestBody UserVO userVO, HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
         TbUser tbUser = userService.insert(userVO, file);
         return RestHelper.success(tbUser);
     }

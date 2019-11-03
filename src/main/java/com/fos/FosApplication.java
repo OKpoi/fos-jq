@@ -22,11 +22,6 @@ public class FosApplication {
         name = data;
     }
 
-//    @Value("${Env.fileUpLoadPath}")
-//    public void setPathList(List<String> data) {
-//        PathList = data;
-//    }
-
     public static void main(String[] args) {
         SpringApplication.run(FosApplication.class, args);
         log.info("======================================");

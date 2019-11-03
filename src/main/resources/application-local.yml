@@ -5,6 +5,10 @@ server:
 #环境
 Env:
   name: Local
+  fileUpLoadPath:
+    - win: D:/fos-resources/img
+    - linux: /home/fos-resources/img
+
 
 spring:
   application:
@@ -48,6 +52,11 @@ spring:
     view:
       prefix: /
       suffix: .html
+    static-path-pattern: /**
+    resources:
+      static-locations: classpath:/static/
+
+
 mybatis-plus:
   type-aliases-package: com.fos.entity
   mapper-locations: classpath:mapper/*.xml
