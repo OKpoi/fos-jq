@@ -37,4 +37,20 @@ public class MovieTypeServiceImpl implements MovieTypeService {
           MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
     }
   }
+
+  @Override
+  public TbMovieType findMovieTypeById(Integer typeId) {
+    TbMovieType tbMovieType = movieTypeMapper.selectById(typeId);
+    if (!Objects.isNull(tbMovieType)) {
+      return tbMovieType;
+    } else {
+      LoggerHelper.createCustomeExcpetionLog(
+              MovieTypeServiceImpl.class.getSimpleName(),
+              "findMovieTypeById",
+              MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
+      throw new CustomerException(
+              MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getCode(),
+              MovieTypeEnums.MOVIE_TYPE_IS_NOT_EXIT.getMsg());
+    }
+  }
 }
