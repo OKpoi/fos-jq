@@ -33,8 +33,7 @@
         </choose>
     </select>
 
-    <select id="selectOne" resultType="com.fos.entity.user.TbUser">
+    <select id="selectOne" resultMap="BaseResultMap">
         select  * FROM tb_user where  user_id = #{id}
-
     </select>
 </mapper>

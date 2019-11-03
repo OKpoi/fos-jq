@@ -23,4 +23,11 @@ public class NavigationController {
     public String nav() {
         return ConstantURL.NAV;
     }
+
+    @GetMapping("/footer")
+    public String footer() {
+        return ConstantURL.FOOTER;
+    }
+
+
 }

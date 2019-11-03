@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Date;
@@ -49,9 +50,8 @@ class UserServiceImplTest {
                         .build();
         updateUser =
                 TbUser.builder()
-                        .userId(1007)
+                        .userId(1005)
                         .userName("eliee1")
-                        .password("123456789")
                         .email("ellie@qq.com")
                         .phone("1111")
                         .userImg("/user")
@@ -107,13 +107,13 @@ class UserServiceImplTest {
     }
 
     @Test
-    void insert() {
+    void should_return_nonull_object_when_insert_newUser() throws IOException {
         TbUser insert = userService.insert(newUser, new MockMultipartFile("/dsdd", "/dsdd".getBytes()));
         Assert.assertNotNull(insert);
     }
 
     @Test
-    void update() {
+    void should_return_nonull_object_when_update_updateUser() {
         TbUser update = userService.update(updateUser);
         Assert.assertNotNull(update);
     }
