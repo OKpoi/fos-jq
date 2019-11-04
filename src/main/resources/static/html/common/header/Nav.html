@@ -254,8 +254,8 @@
         <li class="layui-nav-item">
             <a href="">电影库</a>
         </li>
-        <li class="layui-nav-item" style="width: 300px;text-align: center;">
-            <div>
+        <li class="layui-nav-item" style="text-align: center;">
+            <div class="search">
                 <input type="text" name="title" placeholder="请输入想要搜索的电影"
                        autocomplete="off" class="layui-input">
             </div>
@@ -263,7 +263,7 @@
 
         <span class="layui-col-md-offset6">
         <span class="info">
-            <li class="layui-nav-item login-info">
+            <li class="layui-nav-item login-info" style="display: none">
                 <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
                     <dl class="layui-nav-child">
                         <dd><a href=""> 个人中心 </a></dd>
@@ -275,13 +275,15 @@
                 <i class="layui-icon layui-icon-spread-left"
                    style="font-size: 20px;margin-left: auto"></i>
             </li>
-            <span class="unlogin-btn" style="display: none">
+            <span class="unlogin-btn">
                  <li class="layui-nav-item">
                 <button type="button"
-                        class="layui-btn layui-btn-radius layui-btn layui-btn-radius layui-btn-normal login-btn ">登陆</button>
+                        class="layui-btn  layui-btn-normal login-btn ">登陆</button>
+                  </li>
+                <li class="layui-nav-item">
                 <button type="button"
-                        class="layui-btn layui-btn-radius layui-btn layui-btn-radius layui-btn-normal register-btn">注册</button>
-                 </li>
+                        class="layui-btn  layui-btn-normal register-btn">注册</button>
+                </li>
             </span>
         </span>
         </span>
@@ -409,7 +411,6 @@
         });
     });
 
-
     form.verify({
         username: (value, item) => { //value：表单的值、item：表单的DOM对象
             if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
@@ -482,7 +483,6 @@
                 title: '确认信息'
             }]
         });
-
 
         form.on('submit(formStep)', function (data) {
             step.next('#stepForm');

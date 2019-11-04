@@ -14,11 +14,11 @@
 }
 
 .info {
-    width: 180px;
+    max-width: 100px;;
 }
 
 .login-info {
-    display: block;
+    display: none;
 }
 
 h1 {
@@ -48,8 +48,8 @@ h2 {
 }
 
 #background-login {
+    position: fixed;
     z-index: 30;
-    position: absolute;
     min-width: 100%;
     min-height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -109,7 +109,7 @@ h2 {
 
 #background-res {
     z-index: 30;
-    position: absolute;
+    position: fixed;
     min-width: 100%;
     min-height: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -123,22 +123,21 @@ h2 {
 
 .check-info {
     margin: 20px auto;
-    background: #fffad9;
+    background: #e0e5df;
+    font-family: monospace;
     max-width: 500px;
+    color: rgba(99, 33, 32, 0.75);
     padding: 10px;
-    box-shadow: 7px 4px 4px 0px rgba(197, 197, 197, 0.73);
+    border-radius: 14px;
+    box-shadow: 5px 2px 4px 0px rgba(197, 197, 197, 0.73)
 }
 
 .layui-nav {
-    background-color: #7b8b6f;
-}
-
-.layui-btn {
-    background-color: #7b8b6f;
+    background-color: #718265;
 }
 
 .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
-    background-color: #96a48b;
+    background-color: #adbba1;
 }
 
 .layui-form-radio > i:hover, .layui-form-radioed > i {
@@ -146,7 +145,11 @@ h2 {
 }
 
 .layui-tab {
-    color: #7b8b6f;
+    color: #87987a;
+}
+
+.layui-btn-normal {
+    background: #7b8b6f08;
 }
 
 .notification-icon {
@@ -170,6 +173,81 @@ h2 {
     border-radius: 12px;
 }
 
+.search {
+    min-width: 180px;
+    width: 300px;
+}
+
 .layui-layer-page {
     border-radius: 12px;
 }
+
+@media screen and (max-width: 1600px) {
+    .layui-col-md-offset6 {
+        margin-left: 40%;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .layui-col-md-offset6 {
+        margin-left: 30%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .layui-col-md-offset6 {
+        margin-left: 20%;
+    }
+}
+
+
+@media screen and (max-width: 1080px) {
+    .layui-col-md-offset6 {
+        margin-left: 15%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .layui-col-md-offset6 {
+        margin-left: 8%;
+    }
+
+    .search {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .layui-col-md-offset6 {
+        margin-left: 1%;
+
+    }
+
+    .search {
+        width: 200px;
+    }
+}
+
+
+@media screen and (max-width: 825px) {
+    .layui-col-md-offset6 {
+        margin-left: 0%;
+    }
+
+    .search {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .layui-col-md-offset6 {
+        margin-left: 0%;
+    }
+
+    .search {
+        width: 80px;
+    }
+}
+
+
+
