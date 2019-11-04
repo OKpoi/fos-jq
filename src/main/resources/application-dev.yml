@@ -49,7 +49,7 @@ spring:
 
     static-path-pattern: /**
     resources:
-      static-locations: classpath:/static/
+      static-locations: classpath:/static/,classpath:/img/
 
 mybatis-plus:
   type-aliases-package: com.fos.entity

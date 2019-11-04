@@ -162,7 +162,7 @@ public class UserServiceImpl implements UserService {
             @Cleanup InputStream fileInputStream = file.getInputStream();
             String fileOriginalFilename = file.getOriginalFilename();
             String generalImageAndImaePath = PathGenHelper.generalImageAndImaePath(fileOriginalFilename, fileInputStream, tbUser);
-            if (Objects.nonNull(generalImageAndImaePath) && !generalImageAndImaePath.isEmpty()) {
+            if (StringUtils.hasLength(generalImageAndImaePath)) {
                 tbUser.setUserImg(generalImageAndImaePath);
                 int update = tbUserMapper.updateById(tbUser);
                 if (update > 0) {
