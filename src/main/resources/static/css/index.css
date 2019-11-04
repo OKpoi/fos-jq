@@ -1,3 +1,8 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
 .layui-fixbar-top {
     border-radius: 34px !important;
     background-color: #009688a3 !important;
@@ -8,4 +13,10 @@
     position: absolute;
     z-index: 10 !important;
     width: 100%;
+}
+
+#footer {
+
+    width: 100%;
+    height: 100%;
 }
