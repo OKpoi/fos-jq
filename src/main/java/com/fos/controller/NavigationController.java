@@ -29,5 +29,10 @@ public class NavigationController {
         return ConstantURL.FOOTER;
     }
 
+    @GetMapping("/user")
+    public String userinfo() {
+        return ConstantURL.USER;
+    }
+
 
 }

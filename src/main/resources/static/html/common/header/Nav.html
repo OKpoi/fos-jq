@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Nav</title>
-    <link rel="stylesheet" href="../../../layui/css/layui.css">
-    <link rel="stylesheet" href="../../../css/common/header/nav.css">
-    <link href="../../../layui_exts/step/step-lay/step.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="../../../css/common/hover-min.css">
-    <link rel="stylesheet" href="../../../css/common/animate.min.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/common/header/nav.css">
+    <link href="/static/layui_exts/step/step-lay/step.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="/static/css/common/hover-min.css">
+    <link rel="stylesheet" href="/static/css/common/animate.min.css">
 </head>
 <body>
 
@@ -290,8 +290,8 @@
         </span>
     </div>
 </ul>
-<script src="../../../layui_exts/step/step-lay/step.js"></script>
-<script src="../../../layui/layui.all.js"></script>
+<script src="/static/layui_exts/step/step-lay/step.js"></script>
+<script src="/static/layui/layui.all.js"></script>
 <script>
     $ = layui.$;
     const form = layui.form;
@@ -437,7 +437,7 @@
     });
 
     layui.config({
-        base: '../../../layui_exts/layuinotice/dist/',
+        base: '/static/layui_exts/layuinotice/dist/',
     }).extend({
         notice: 'notice'
     });
@@ -463,7 +463,7 @@
     });
 
     layui.config({
-        base: '../../../layui_exts/step/step-lay/'
+        base: '/static/layui_exts/step/step-lay/'
     }).use(['form', 'step'], function () {
         const $ = layui.$
             , form = layui.form
