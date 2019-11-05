@@ -1,13 +1,14 @@
 package com.fos.configration;
 
-import static com.fos.common.Constant.LINRESOURCESPATH;
-import static com.fos.common.Constant.WINRESOURCESPATH;
-
-import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.File;
+
+import static com.fos.common.Constant.LINRESOURCESPATH;
+import static com.fos.common.Constant.WINRESOURCESPATH;
 
 
 /**
