@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影库</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/Movie.css">
+</head>
+<body>
+<nav id="header"></nav>
+<form class="layui-form" id="contxt_nav">
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">电影类型</label>
+        <div class="layui-input-block" id="movieTypeNav">
+        </div>
+    </div>
+</form>
+<div class="layui-container" id="context_container">
+    <div class="layui-row layui-col-space10" id="movieList">
+
+    </div>
+</div>
+<footer id="footer"></footer>
+<script src="layui/layui.all.js"></script>
+<script>
+    $ = layui.$;
+    $("#header").load("/nav");
+    $("#footer").load("/footer");
+    const form = layui.form;
+    $.get("/api/movie/allmovie", (data) => {
+        let res = data.data;
+        $.each(res, function (index, item) {
+            $('#movieList').append("<div class= 'layui-col-md4'><img src='img/demo/download.jpg'> <div style='font-size: larger'>" + item.movieName + "</div></div>");
+        })
+    });
+    function get() {
+        let flushFlag = false;
+        form.on('checkbox(type)',(data) => {
+            const tmp = data.value;
+            if(!flushFlag){
+                $(".layui-col-md4").remove();
+                flushFlag = true;
+            }
+            if(data.elem.checked){
+                $.get("/api/movie/allmoviebytype",{typeId:tmp}, (data) => {
+                    let res = data.data;
+                    $.each(res, function (index, item) {
+                        $('#movieList').append("<div class= 'layui-col-md4' value='"+item.typeId+"'><img src='img/demo/download.jpg'><div>" + item.movieName + "</div></div>");
+                    })
+                });
+            }else{
+                $("[value= '"+tmp+"']").remove();
+            }
+        })
+    }
+    $.get("/api/movietype/allmovietype", (data) => {
+        let res = data.data;
+        $.each(res, function (index, item) {
+            $('#movieTypeNav').append("<input type='checkbox' name='movieType' style='zoom: 80%' lay-skin='primary' lay-filter ='type' title=" + item.typeName + " value = '" + item.typeId + "'>");
+            form.render();
+        })
+    }).then(() => get());
+</script>
+</body>
+</html>

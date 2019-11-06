@@ -29,12 +29,17 @@ public class NavigationController {
         return ConstantURL.FOOTER;
     }
 
+<<<<<<< HEAD
     @GetMapping("/user")
     public String userinfo() {
         return ConstantURL.USER;
+    }
+
+
+=======
     @GetMapping("/movie")
     public String movie() {
         return ConstantURL.MOVIE;
     }
-
+>>>>>>> ea1887fa5fe21986aeba0cda47c36b61aba7a7c2
 }

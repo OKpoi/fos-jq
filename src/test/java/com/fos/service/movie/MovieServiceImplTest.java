@@ -2,6 +2,7 @@ package com.fos.service.movie;
 
 
 import com.fos.entity.movie.TbMovie;
+import com.fos.vo.MovieVO;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,8 +27,9 @@ public class MovieServiceImplTest {
         Assert.assertEquals(2,tbMovies.size());
     }
     @Test
-    void  should_return_tbMovie_size1_when_findMovieById(){
-        TbMovie tbMovie = movieService.findMovieById(movieId);
-        Assert.assertNotNull(tbMovie);
+    void  should_return_movieVO_size1_when_findMovieById(){
+        MovieVO movieVO = movieService.findMovieById(movieId);
+        System.out.println(movieVO.toString());
+        Assert.assertNotNull(movieVO);
     }
 }
