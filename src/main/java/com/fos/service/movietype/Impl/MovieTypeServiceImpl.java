@@ -41,7 +41,7 @@ public class MovieTypeServiceImpl implements MovieTypeService {
   @Override
   public TbMovieType findMovieTypeById(Integer typeId) {
     TbMovieType tbMovieType = movieTypeMapper.selectById(typeId);
-    if (!Objects.isNull(tbMovieType)) {
+    if (Objects.nonNull(tbMovieType)) {
       return tbMovieType;
     } else {
       LoggerHelper.createCustomeExcpetionLog(

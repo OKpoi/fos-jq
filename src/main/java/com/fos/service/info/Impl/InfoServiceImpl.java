@@ -35,4 +35,40 @@ public class InfoServiceImpl implements InfoService {
           InfoEnums.HEADLINE_NOT_FOUND.getCode(), InfoEnums.HEADLINE_NOT_FOUND.getMsg());
     }
   }
+
+  @Override
+  public List<TbInfo> findAllInfo() {
+    List<TbInfo> tbInfos = tbInfoMapper.selectList(null);
+    if(Objects.nonNull(tbInfos) && tbInfos.size()>0){
+      return tbInfos;
+    }else{
+      LoggerHelper.createCustomeExcpetionLog(
+              InfoServiceImpl.class.getSimpleName(),
+              "findAllInfo",
+              InfoEnums.INFO_NOT_EXISIT.getMsg()
+      );
+      throw new CustomerException(
+              InfoEnums.INFO_NOT_EXISIT.getCode(),
+              InfoEnums.INFO_NOT_EXISIT.getMsg()
+      );
+    }
+  }
+
+  @Override
+  public TbInfo findInfoById(Integer infoId) {
+    TbInfo tbInfo = tbInfoMapper.selectById(infoId);
+    if(Objects.nonNull(tbInfo)){
+      return tbInfo;
+    }else{
+      LoggerHelper.createCustomeExcpetionLog(
+              InfoServiceImpl.class.getSimpleName(),
+              "findInfoById",
+              InfoEnums.HEADLINE_NOT_FOUND.getMsg()
+      );
+      throw new CustomerException(
+              InfoEnums.HEADLINE_NOT_FOUND.getCode(),
+              InfoEnums.HEADLINE_NOT_FOUND.getMsg()
+      );
+    }
+  }
 }
