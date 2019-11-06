@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface InfoService {
   List<TbInfo> findHeadLineInfoOnTheIndexPage();
+  List<TbInfo> findAllInfo();
+  TbInfo findInfoById(Integer infoId);
 }

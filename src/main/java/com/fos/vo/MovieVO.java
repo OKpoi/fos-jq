@@ -12,6 +12,7 @@ import java.util.Date;
 public class MovieVO {
     private Integer movieId;
 
+    private Integer typeId;
     /** 电影名 */
     private String movieName;
 

@@ -31,10 +31,10 @@ spring:
       minimum-idle: 5
       maximum-pool-size: 15
       auto-commit: true
-      idle-timeout: 3000
+      idle-timeout: 30000
       pool-name: DatebookHikariCP
       max-lifetime: 1800000
-      connection-timeout: 3000
+      connection-timeout: 30000
       connection-test-query: SELECT 1
   servlet:
     multipart:
@@ -49,7 +49,7 @@ spring:
 
     static-path-pattern: /**
     resources:
-      static-locations: classpath:/static/
+      static-locations: classpath:/
 
 mybatis-plus:
   type-aliases-package: com.fos.entity

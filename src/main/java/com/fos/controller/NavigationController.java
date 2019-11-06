@@ -29,5 +29,8 @@ public class NavigationController {
         return ConstantURL.FOOTER;
     }
 
-
+    @GetMapping("/movie")
+    public String movie() {
+        return ConstantURL.MOVIE;
+    }
 }

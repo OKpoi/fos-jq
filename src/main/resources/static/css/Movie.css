@@ -1,0 +1,14 @@
+#contxt_nav {
+    margin: 0 auto;
+    width: 550px;
+    height: 100px;
+}
+#contxt_nav label{
+    width: 150px;
+    font-size: x-large;
+}
+#context_container {
+    margin: 0 auto;
+    height: 1400px;
+    text-align: center;
+}
