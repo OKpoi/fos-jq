@@ -1,6 +1,5 @@
 package com.fos.controller.user;
 
-import com.fos.dao.comment.TbMovieCommentMapper;
 import com.fos.entity.user.TbUser;
 import com.fos.service.user.UserService;
 import com.fos.util.RestHelper;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
@@ -21,8 +19,8 @@ public class UserController {
     @Resource
     private UserService userService;
 
-
-
+    @Resource
+    private TbMovieCommentMapper tbMovieCommentMapper;
     @PostMapping("/login")
     public RestVO login(@RequestBody LoginVO loginVO) {
         TbUser userByUserVOToLogin = userService.findUserByLoginVOToLogin(loginVO);
@@ -30,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public RestVO register(@RequestBody UserVO userVO, HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
+    public RestVO register(@RequestBody UserVO userVO, @RequestParam("file") MultipartFile file) throws IOException {
         TbUser tbUser = userService.insert(userVO, file);
         return RestHelper.success(tbUser);
     }
