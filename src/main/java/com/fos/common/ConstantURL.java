@@ -7,4 +7,5 @@ public class ConstantURL {
     public static final String FOOTER = "html/common/footer/Footer";
     public static final String USER = "html/user/user";
     public static final String MOVIE = "movie";
+    public static final String MOVIEINFO = "html/movie/movieinfo";
 }

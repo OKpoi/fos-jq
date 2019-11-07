@@ -32,9 +32,17 @@ public class NavigationController {
     @GetMapping("/user")
     public String userinfo() {
         return ConstantURL.USER;
+    }
+
     @GetMapping("/movie")
     public String movie() {
         return ConstantURL.MOVIE;
     }
 
+    @GetMapping("/movieinfo")
+    public String movieInfo() {
+        return ConstantURL.MOVIEINFO;
+    }
+
 }
+

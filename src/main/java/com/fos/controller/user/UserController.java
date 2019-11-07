@@ -19,8 +19,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private TbMovieCommentMapper tbMovieCommentMapper;
     @PostMapping("/login")
     public RestVO login(@RequestBody LoginVO loginVO) {
         TbUser userByUserVOToLogin = userService.findUserByLoginVOToLogin(loginVO);
