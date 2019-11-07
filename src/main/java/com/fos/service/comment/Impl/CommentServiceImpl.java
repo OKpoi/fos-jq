@@ -23,7 +23,6 @@ public class CommentServiceImpl implements CommentService {
     static Map<String, Object> FILTERMAP = new HashMap<>(2);
     static String MOVIEID = "movie_id";
     static String USERID = "user_id";
-
     @Override
     public List<TbMovieComment> findMovieCommentByMovieId(Integer movieId) {
         FILTERMAP.put(MOVIEID, movieId);
