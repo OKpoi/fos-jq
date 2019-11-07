@@ -39,7 +39,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Set<TbMovie> findMovieByTypeId(Integer typeId) {
-        Map<String,Object> filterMap = new HashMap<>();
+        Map<String,Object> filterMap = new HashMap<>(1);
         filterMap.put("type_id",typeId);
         List<TbMovie> tbMovies = tbMovieMapper.selectByMap(filterMap);
         if(Objects.nonNull(tbMovies) && tbMovies.size()>0){

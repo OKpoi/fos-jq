@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>电影库</title>
     <link rel="stylesheet" href="layui/css/layui.css">
-    <link rel="stylesheet" href="css/Movie.css">
+    <link rel="stylesheet" href="css/movie.css">
 </head>
 <body>
 <nav id="header"></nav>
@@ -33,7 +33,14 @@
             $('#movieList').append("<div class= 'layui-col-md4'><img src='img/demo/download.jpg'> <div style='font-size: larger'>" + item.movieName + "</div></div>");
         })
     });
-    function get() {
+    $.get("/api/movietype/allmovietype", (data) => {
+        let res = data.data;
+        $.each(res, function (index, item) {
+            $('#movieTypeNav').append("<input type='checkbox' name='movieType' style='zoom: 80%' lay-skin='primary' lay-filter ='type' title=" + item.typeName + " value = '" + item.typeId + "'>");
+            form.render();
+        })
+    }).then(() => getMovieByType());
+    function getMovieByType() {
         let flushFlag = false;
         form.on('checkbox(type)',(data) => {
             const tmp = data.value;
@@ -53,13 +60,6 @@
             }
         })
     }
-    $.get("/api/movietype/allmovietype", (data) => {
-        let res = data.data;
-        $.each(res, function (index, item) {
-            $('#movieTypeNav').append("<input type='checkbox' name='movieType' style='zoom: 80%' lay-skin='primary' lay-filter ='type' title=" + item.typeName + " value = '" + item.typeId + "'>");
-            form.render();
-        })
-    }).then(() => get());
 </script>
 </body>
 </html>

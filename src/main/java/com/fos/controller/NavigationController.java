@@ -39,10 +39,18 @@ public class NavigationController {
         return ConstantURL.MOVIE;
     }
 
+    @GetMapping("/infolist")
+    public String infolist() {
+        return ConstantURL.INFOLIST;
+    }
     @GetMapping("/movieinfo")
     public String movieInfo() {
         return ConstantURL.MOVIEINFO;
     }
 
+    @GetMapping("/info")
+    public String info(){
+        return ConstantURL.INFO;
+    }
 }
 

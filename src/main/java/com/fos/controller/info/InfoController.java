@@ -19,7 +19,7 @@ import java.util.List;
 public class InfoController {
     @Resource
     InfoService infoService;
-    @RequestMapping
+    @RequestMapping("/headlineinfo")
     public RestVO findHeadLineInfoOnTheIndexPage(){
         List<TbInfo> tbInfos =infoService.findHeadLineInfoOnTheIndexPage();
         return RestHelper.success(InfoEnums.QUERT_INFO_SUCCESS.getMsg(),tbInfos);

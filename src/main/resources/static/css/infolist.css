@@ -1,0 +1,46 @@
+.layui-col-md12{
+    margin-bottom: 10px;
+}
+.layui-col-md12 img{
+    width: 1150px;
+    height: 400px;
+    z-index: -1;
+}
+.layui-col-md12 div{
+    display: inline;
+}
+.layui-col-md12 figure figcaption{
+    width: 1150px;
+    height: 200px;
+    position: absolute;
+    top: 218px;
+    left: 45px;
+    right: 0;
+    bottom: 0;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    font-family: 楷体;
+    background: rgba(145,145,145,0.9);
+    opacity: 0;
+}
+.layui-col-md12 figure figcaption p{
+    position: relative;
+}
+.layui-col-md12 figure:hover figcaption{
+    animation: fadeanimation 1s forwards;
+}
+.layui-col-md12 a{
+    width: 1050px;
+    height: 300px;
+    position: absolute;
+    top: 24px;
+    left: 57px;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+@keyframes fadeanimation{
+    from{opacity: 0}
+    to{opacity: 1}
+}
