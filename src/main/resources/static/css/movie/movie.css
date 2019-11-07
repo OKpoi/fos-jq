@@ -1,0 +1,106 @@
+#footer {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: calc(100vh + 300px);
+}
+
+.title {
+    width: auto;
+    position: absolute;
+    left: 48%;
+    bottom: 80%;
+    font-size: 37px;
+    font-weight: bolder;
+    color: white;
+    font-family: 微软雅黑;
+}
+
+.movie-info {
+    position: absolute;
+    left: 48%;
+    font-size: 17px;
+    color: white;
+    bottom: 29%;
+    line-height: 35px;
+}
+
+.point {
+    font-size: 50px;
+    font-weight: bolder;
+    color: #faead3;
+    font-family: fantasy;
+    width: 6%;
+    background: #7b8b6f;
+    position: absolute;
+    left: 85%;
+    bottom: 85%;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 1px 3px 13px 0px #00000026;
+}
+
+.layui-card-header {
+    position: relative;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    border-bottom: 0px !important;
+    color: white !important;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+    background: #8696a7;
+}
+
+.layui-card-body {
+    position: relative;
+    padding: 10px 15px;
+    line-height: 24px;
+    color: white;
+    background: #8696a7;
+}
+
+.comment {
+    background: white !important;
+}
+
+.comment-header {
+    font-size: 26px !important;
+    padding: 10px !important;
+    background: rgba(255, 236, 238, 0.48);
+    color: #5b5b5b !important;
+    font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    font-weight: 400;
+}
+
+.comment-content {
+    color: black;
+}
+
+@media screen and (max-width: 995px) {
+    .movie-info {
+        width: auto;
+        position: absolute;
+        left: 48%;
+        top: 97px;
+    }
+
+    .title {
+        top: 30px;
+        position: absolute;
+        left: 48%;
+    }
+
+    .point {
+        position: absolute;
+        left: 85%;
+        top: -9px;
+        height: fit-content;
+    }
+
+    .movie-img {
+        position: relative;
+        left: 86px;
+        top: 30px;
+    }
+}
