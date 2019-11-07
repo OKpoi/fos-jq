@@ -17,11 +17,15 @@
         <div class="layui-row" style="box-shadow: 0px 3px 6px 0px #0000003b">
             <div class="layui-col-md12">
                 <div class="info-background" style="height: 500px;width: 100%;overflow: hidden;float: left">
-                    <img src="/static/img/demo/download3.jpg" style="width: 100%;height: 500px;filter:blur(30px) brightness(80%)">
+                    <img src="/static/img/demo/download3.jpg"
+                         style="width: 100%;height: 500px;filter:blur(30px) brightness(80%)">
                 </div>
                 <div class="base-info" style="height:100%;width: 100%;position: absolute;">
-                    <img class="movie-img" src="/static/img/demo/download3.jpg" style="position: relative;left: 50px;top: 30px;">
-                    <div style="z-index: 9;position: absolute;left: 13%;top: 40%;"><i class="layui-icon layui-icon-play playbtn" style="font-size: 67px;display: none;cursor: pointer"></i></div>
+                    <img class="movie-img" src="/static/img/demo/download3.jpg"
+                         style="position: relative;left: 50px;top: 30px;">
+                    <div style="z-index: 9;position: absolute;left: 15%;top: 40%;"><i
+                            class="layui-icon layui-icon-play playbtn"
+                            style="font-size: 67px;display: none;cursor: pointer"></i></div>
                     <div class="title">小黄人</div>
                     <div class="movie-info">
 
@@ -44,9 +48,9 @@
 
             </div>
         </div>
-        <div class="lay-row" style="margin-top: 50px;">
+        <div class="lay-row">
             <div class="layui-col-md12">
-                <div class="layui-card" style=" box-shadow: 0px 3px 7px 0px #00000054;">
+                <div class="layui-card intro">
                     <div class="layui-card-header">剧情：</div>
                     <div class="layui-card-body">
                         《小黄人》围绕小黄人们的“前格鲁时代”展开叙述，并特别追溯了小黄人的起源。小黄人原本是一种单细胞体生物，之后逐渐进化为专为超级坏蛋提供服务的坏蛋助手。它们服务过的超级坏蛋包括：霸王龙、拿破仑、吸血鬼、北极熊。小黄人总是忠诚地为主人提供各种服务，兢兢业业，毫无怨言——直到它们失手“害死”每一任主人。在痛苦地失去一个又一个主人后，被困在冰洞之内小黄人们愈发焦躁不安，于是小黄人斯图尔特、凯文及鲍勃决定挺身而出，去到花花世界，再次寻找可以效劳的主人。
@@ -54,25 +58,36 @@
                 </div>
             </div>
         </div>
-        <div class="lay-row" style="margin-top: 220px;box-shadow: 1px 9px 5px 1px rgba(0, 0, 0, 0.07)!important;">
+        <div class="lay-row"
+             style="margin-top: 220px;box-shadow: 0px 1px 13px 0px #00000026;">
             <div class="layui-card">
-                <div class="layui-card-header comment-header">影评区</div>
+                <div class="layui-card-header comment-header">&nbsp;&nbsp;影评区</div>
                 <div class="layui-card-body comment">
                     <div class="comment-content">
-                        <img style="width: 80px;height: 80px;background: #0F9E5E;border-radius: 40px;float: left;" src="" alt="">
-                        <div class="comment-name" style="font-size: 24px;margin-left: 160px;width: max-content;margin-top: 10px;">Lomo Fu</div>
-                        <div class="comment-content" style="width: max-content;font-size: 17px;margin-left: 160px;margin-top: 33px;">hhhhhhhhhhhhhh</div>
-                        <div class="comment-toolbar">
-                            <div class="comment-icon">
-                                <i class="layui-icon layui-icon-reply-fill"></i>
-                                <div>回复</div>
-                                <div>2019.02.16</div>
-                            </div>
+                        <img style="width: 80px;height: 80px;background: #0F9E5E;border-radius: 40px;float: left;left: 35px;position: relative;bottom: 10px;"
+                             src="" alt="">
+                        <div class="comment-name"
+                             style="font-size: 24px;margin-left: 160px;width: max-content;margin-top: 10px;">Lomo Fu
+                        </div>
+                        <div class="comment-content"
+                             style="width: max-content;font-size: 17px;margin-left: 160px;margin-top: 33px;">
+                            hhhhhhhhhhhhhh
+                        </div>
+                        <div class="comment-toolbar" style="margin-top: 20px;text-align: end">
+                            <span class="comment-icon">
+                                <div style="position: relative;right: 55%">
+                                    <i class="layui-icon layui-icon-reply-fill replyveiw-btn"
+                                       style="cursor: pointer"></i>
+                                    <span class="reply-btn" style="margin-left: 50px" style="cursor: pointer">回复</span>
+                                </div>
+                                <span style="margin-right: 20px">2019.02.16</span>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div style="height:1px; margin-top:-1px;clear: both;overflow:hidden;"></div>
     </div>
 </main>
 <footer id="footer"></footer>
@@ -101,20 +116,41 @@
 
     $('.playbtn').click(() => {
         layer.open({
-            type: 1,
-            area: ['1024px', '720px'],
-            shadeClose: 'true',
-            closeBtn: 0,
+            type: 2,
             title: false,
-            content: renderContent()
+            area: ['1024px', '720px'],
+            shade: 0.8,
+            closeBtn: 0,
+            shadeClose: true,
+            content: '//player.youku.com/embed/XMjY3MzgzODg0'
         });
     });
+
+    $('.reply-btn').click(() => {
+        layer.prompt({
+            title: constant.movieinfo.TITLE,
+            formType: 2,
+            shadeClose: true,
+            moveOut: 'true'
+        }, (text) => {
+            if (text === null) {
+                layer.msg(Constant.movieinfo.TEXT_IS_EMPTY);
+                return
+            }
+            console.log(text);
+
+        }, (index) => {
+            layer.close(index);
+        });
+
+
+    });
+
 
     function renderContent() {
         let content = "<div style=\"background: black;min-height: 100%;color: white\">2</div>"
         return content;
     }
-
 
 </script>
 
