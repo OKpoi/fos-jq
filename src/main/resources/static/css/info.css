@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.layui-col-md12{
+    padding: 0;
+    width: 1150px;
+    height: 700px;
+    background: gainsboro;
+}
+.layui-col-md12 img{
+    position: relative;
+    right: 5px;
+    width: 1150px;
+    height: 300px;
+}
+.layui-col-md12 figcaption{
+    font-size: 20px;
+}
+.layui-col-md12 figcaption p{
+    padding:30px 0px;
+    font-weight: bolder;
+    font-size: 30px;
+}

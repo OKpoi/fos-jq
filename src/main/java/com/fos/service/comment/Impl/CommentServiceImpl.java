@@ -14,22 +14,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 @Service
 @Slf4j
 public class CommentServiceImpl implements CommentService {
     @Resource
     TbMovieCommentMapper tbMovieCommentMapper;
+    static Map<String, Object> FILTERMAP = new HashMap<>(2);
+    static String MOVIEID = "movie_id";
+    static String USERID = "user_id";
+
     @Override
     public List<TbMovieComment> findMovieCommentByMovieId(Integer movieId) {
-        Map<String,Object> filterMap = new HashMap<>();
-        filterMap.put("movie_id",movieId);
-        List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(filterMap);
-        if (Objects.nonNull(tbMovieComments) && tbMovieComments.size()>0){
+        FILTERMAP.put(MOVIEID, movieId);
+        List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(FILTERMAP);
+        if (Objects.nonNull(tbMovieComments) && tbMovieComments.size() > 0) {
             return tbMovieComments;
-        }else{
+        } else {
             LoggerHelper.createCustomeExcpetionLog(
                     CommentServiceImpl.class.getSimpleName(),
                     "findMovieCommentByMovieId",
@@ -44,12 +45,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<TbMovieComment> findMovieCommentByUserId(Integer userId) {
-        Map<String,Object> filterMap = new HashMap<>();
-        filterMap.put("user_id",userId);
+        Map<String, Object> filterMap = new HashMap<>();
+        filterMap.put(USERID, userId);
         List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(filterMap);
-        if (Objects.nonNull(tbMovieComments) && tbMovieComments.size()>0){
+        if (Objects.nonNull(tbMovieComments) && tbMovieComments.size() > 0) {
             return tbMovieComments;
-        }else{
+        } else {
             LoggerHelper.createCustomeExcpetionLog(
                     CommentServiceImpl.class.getSimpleName(),
                     "findMovieCommentByUserId",
@@ -65,13 +66,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public int delMovieComment(Integer movieId, Integer userId) {
 
-        Map<String,Object> filterMap = new HashMap<>();
-        filterMap.put("movie_id",movieId);
-        filterMap.put("user_id",userId);
+        Map<String, Object> filterMap = new HashMap<>();
+        filterMap.put(MOVIEID, movieId);
+        filterMap.put(USERID, userId);
         int delState = tbMovieCommentMapper.deleteByMap(filterMap);
-        if (delState != 0){
+        if (delState != 0) {
             return delState;
-        }else{
+        } else {
             LoggerHelper.createCustomeExcpetionLog(
                     CommentServiceImpl.class.getSimpleName(),
                     "delMovieComment",

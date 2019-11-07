@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -46,10 +47,11 @@ public class RankServiceImpl implements RankService {
     @Override
     public List<TbMovie> findAllRankByCommentCount() {
         List<CommentToRankDTO> commentToRankDTOS = tbRankMapper.gerMovieIdByCommentCount();
-        List<Integer> integers = new ArrayList<>();
-        for (CommentToRankDTO commentToRankDTO : commentToRankDTOS) {
-            integers.add(commentToRankDTO.getMovieId());
-        }
+        List<Integer> integers = commentToRankDTOS.stream().map(commentToRankDTO -> commentToRankDTO.getMovieId()).collect(Collectors.toList());
+//        List<Integer> integers = new ArrayList<>();
+//        for (CommentToRankDTO commentToRankDTO : commentToRankDTOS) {
+//            integers.add(commentToRankDTO.getMovieId());
+//        }
         List<TbMovie> tbMovies = tbMovieMapper.selectBatchIds(integers);
         if (Objects.nonNull(tbMovies) && tbMovies.size() > 0) {
             return tbMovies;
