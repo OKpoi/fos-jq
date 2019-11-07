@@ -7,6 +7,7 @@ import com.fos.exception.CustomerException;
 import com.fos.service.comment.CommentService;
 import com.fos.util.LoggerHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,9 +24,11 @@ public class CommentServiceImpl implements CommentService {
     static Map<String, Object> FILTERMAP = new HashMap<>(2);
     static String MOVIEID = "movie_id";
     static String USERID = "user_id";
+    static String STATE = "state";
     @Override
     public List<TbMovieComment> findMovieCommentByMovieId(Integer movieId) {
         FILTERMAP.put(MOVIEID, movieId);
+        FILTERMAP.put(STATE,0);
         List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(FILTERMAP);
         if (Objects.nonNull(tbMovieComments) && tbMovieComments.size() > 0) {
             return tbMovieComments;
@@ -44,8 +47,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<TbMovieComment> findMovieCommentByUserId(Integer userId) {
-        Map<String, Object> filterMap = new HashMap<>();
+        Map<String, Object> filterMap = new HashMap<>(2);
         filterMap.put(USERID, userId);
+        filterMap.put(STATE,0);
         List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(filterMap);
         if (Objects.nonNull(tbMovieComments) && tbMovieComments.size() > 0) {
             return tbMovieComments;
@@ -64,11 +68,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int delMovieComment(Integer movieId, Integer userId) {
-
-        Map<String, Object> filterMap = new HashMap<>();
+        Map<String, Object> filterMap = new HashMap<>(2);
         filterMap.put(MOVIEID, movieId);
         filterMap.put(USERID, userId);
-        int delState = tbMovieCommentMapper.deleteByMap(filterMap);
+        List<TbMovieComment> tbMovieComments = tbMovieCommentMapper.selectByMap(filterMap);
+        TbMovieComment tbMovieComment = new TbMovieComment();
+        BeanUtils.copyProperties(tbMovieComments.get(0),tbMovieComment);
+        tbMovieComment.setState(1);
+        int delState = tbMovieCommentMapper.updateById(tbMovieComment);
         if (delState != 0) {
             return delState;
         } else {
