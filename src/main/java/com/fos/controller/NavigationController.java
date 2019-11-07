@@ -1,8 +1,6 @@
 package com.fos.controller;
 
 import com.fos.common.ConstantURL;
-import com.fos.common.InfoURL;
-import com.fos.common.MovieURL;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,15 +36,18 @@ public class NavigationController {
 
     @GetMapping("/movie")
     public String movie() {
-        return MovieURL.MOVIE;
+        return ConstantURL.MOVIE;
     }
 
     @GetMapping("/infolist")
     public String infolist() {
-        return InfoURL.INFOLIST;
+        return ConstantURL.INFOLIST;
     }
-    @GetMapping("/info")
-    public String info() {
-        return InfoURL.INFO;
+    @GetMapping("/movieinfo")
+    public String movieInfo() {
+        return ConstantURL.MOVIEINFO;
     }
+
+
 }
+
