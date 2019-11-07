@@ -8,6 +8,6 @@ public class ConstantURL {
     public static final String USER = "html/user/user";
     public static final String MOVIEINFO = "html/movie/movieinfo";
     public static String INFOLIST = "infolist";
-    public static String INFO ="info";
+    public static String INFO ="html/info/info";
     public static final String MOVIE = "movie";
 }

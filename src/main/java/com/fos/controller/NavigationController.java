@@ -48,6 +48,9 @@ public class NavigationController {
         return ConstantURL.MOVIEINFO;
     }
 
-
+    @GetMapping("/info")
+    public String info(){
+        return ConstantURL.INFO;
+    }
 }
 
