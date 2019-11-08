@@ -133,35 +133,48 @@
             $('.background-img').css('filter', 'blur(0px) brightness(100%)');
         }, 100);
     });
+
     $('.time-container').mouseenter(() => {
         clearTimeout(time);
-    })
+    });
+
     $.get("/api/comment/userid", {userId: 1004}, (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
-            $("#myComment ul").append("  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> <div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">" + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() + "月" + new Date(item.createTime).getDay() + "日" + "</h3> <p>" + item.content + " </p> <button id='del' onclick='deleter(this)' value='"+item.movieId+"'>删除</button> </div> </li>");
+            $("#myComment ul").append();
         });
+    }).fail(() => {
+
     });
+
     $.get("/api/reply/userId/1004", (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
-            $("#myReply ul").append("  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> <div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">" + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() + "月" + new Date(item.createTime).getDay() + "日" + "</h3> <p>" + item.rcontent + " </p> </div> </li>");
+            $("#myReply ul").append(renderMyReply(item));
         });
+    }).fail(() => {
+        console.log("no")
     });
-    $.get("/api/reply/parentId//1004", (data) => {
+
+    $.get("/api/reply/parentId/1004", {}, (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
-            $("#reply ul").append("  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> <div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">" + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() + "月" + new Date(item.createTime).getDay() + "日" + "</h3> <p>" + item.rcontent + " </p></div> </li>");
+            $("#reply ul").append(
+                "  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> <div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">"
+                + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() + "月" + new Date(item.createTime).getDay() + "日" + "</h3> <p>" + item.rcontent
+                + " </p></div> </li>");
         });
+    }).fail((err, data) => {
+        console.log("no")
     });
 
     function deleter(element) {
         let movieId = element.value;
-        layer.confirm('您确定要删除此评论？', {
-            btn: ['是的', '再想想']
+        layer.confirm(Constant.user.DELETE_WARNING, {
+            btn: [Constant.user.YES, Constant.user.NO]
         }, function () {
             //确定的方法
-            $.get("/api/comment/delete",{ 'userId': 1004,'movieId': movieId },
+            $.get("/api/comment/delete", {'userId': 1004, 'movieId': movieId},
                 function (data) {
                     if (data.code == 200) {
                         layer.msg(data.msg, {
@@ -179,6 +192,20 @@
         });
 
     }
+
+    function renderMyReply(item) {
+        let data = "  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> " +
+            "<div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">"
+            + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() +
+            "月" + new Date(item.createTime).getDay() + "日" +
+            "</h3> " +
+            "<p>" + item.content + " </p> " +
+            "<button id='del' onclick='deleter(this)' value='" + item.movieId + "'>删除</button> " +
+            "</div> " +
+            "</li>";
+        return data;
+    }
+
 </script>
 </body>
 </html>

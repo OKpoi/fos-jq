@@ -39,8 +39,9 @@
     margin-top: 200px;
 }
 
-.layui-card {
-    box-shadow: 2px 6px 14px 4px rgba(0, 0, 0, .05) !important;
+.intro {
+    box-shadow: 0px 7px 10px 0 rgba(0, 0, 0, 0.29);
+    width: 100%;
 }
 button{
     background: none;
