@@ -170,8 +170,8 @@
 
     function deleter(element) {
         let movieId = element.value;
-        layer.confirm(Constant.user.DELETE_WARNING, {
-            btn: [Constant.user.YES, Constant.user.NO]
+        layer.confirm(constant.user.DELETE_WARNING, {
+            btn: [constant.user.YES, constant.user.NO]
         }, function () {
             //确定的方法
             $.get("/api/comment/delete", {'userId': 1004, 'movieId': movieId},
@@ -217,7 +217,7 @@
         return data;
     }
     function errplane() {
-        let data = "<div><p style='font-size: 40px;text-align: center'>"+constant.err.ERROR_INFO+"</p></div>"
+        let data = "<div id='err'><p style='font-size: 25px;text-align: center'>"+constant.err.ERROR_INFO+"</p></div>"
         return data;
     }
 </script>
