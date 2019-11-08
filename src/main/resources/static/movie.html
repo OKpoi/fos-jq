@@ -22,21 +22,21 @@
 </div>
 <footer id="footer"></footer>
 <script src="layui/layui.all.js"></script>
+<script src="/static/js/common/Constant.js"></script>
 <script>
     $ = layui.$;
     $("#header").load("/nav");
     $("#footer").load("/footer");
+    let constant = getConstant();
     const form = layui.form;
     $.get("/api/movie/allmovie", (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
             // $('#movieList').append("<div class= 'layui-col-md4'><img src='img/demo/download.jpg'> <div style='font-size: larger'>" + item.movieName + "</div></div>");
-            $("#movieList").append(renderMovie(item)).fail((err,data) =>{
-                console.log("WTF 出错了");
-            });
+            $("#movieList").append(renderMovie(item));
         })
-    }).fail((err,data) =>{
-        console.log("WTF 出错了");
+    }).fail((err, data) => {
+        $('#movieList').append(errplane());
     });
     $.get("/api/movietype/allmovietype", (data) => {
         let res = data.data;
@@ -44,34 +44,41 @@
             $('#movieTypeNav').append("<input type='checkbox' name='movieType' style='zoom: 80%' lay-skin='primary' lay-filter ='type' title=" + item.typeName + " value = '" + item.typeId + "'>");
             form.render();
         })
-    }).then(() => getMovieByType()).fail((err,data) =>{
-        console.log("WTF 出错了");
+    }).then(() => getMovieByType()).fail((err, data) => {
+        $('#movieTypeNav').append(errplane());
     });
+
     function getMovieByType() {
         let flushFlag = false;
-        form.on('checkbox(type)',(data) => {
+        form.on('checkbox(type)', (data) => {
             const tmp = data.value;
-            if(!flushFlag){
+            if (!flushFlag) {
                 $(".layui-col-md4").remove();
                 flushFlag = true;
             }
-            if(data.elem.checked){
-                $.get("/api/movie/allmoviebytype",{typeId:tmp}, (data) => {
+            if (data.elem.checked) {
+                $.get("/api/movie/allmoviebytype", {typeId: tmp}, (data) => {
                     let res = data.data;
                     $.each(res, function (index, item) {
                         // $('#movieList').append("<div class= 'layui-col-md4' value='"+item.typeId+"'><img src='img/demo/download.jpg'><div>" + item.movieName + "</div></div>");
                         $('#movieList').append(renderMovie(item));
                     })
-                }).fail((err,data) =>{
-                    console.log("WTF 出错了");
+                }).fail((err, data) => {
+                    $('#movieList').append(errplane());
                 });
-            }else{
-                $("[value= '"+tmp+"']").remove();
+            } else {
+                $("[value= '" + tmp + "']").remove();
             }
         })
     }
-    function  renderMovie(item) {
-        let data = "<div class= 'layui-col-md4'  value='"+item.typeId+"'><img src='img/demo/download.jpg'> <div style='font-size: larger'>" + item.movieName + "</div></div>"
+
+    function renderMovie(item) {
+        let data = "<div class= 'layui-col-md4'  value='" + item.typeId + "'><img src='img/demo/download.jpg'> <div style='font-size: larger'>" + item.movieName + "</div></div>"
+        return data;
+    }
+
+    function errplane() {
+        let data = "<div><p style='font-size: 40px;text-align: center'>" + constant.err.ERROR_INFO + "</p></div>"
         return data;
     }
 </script>

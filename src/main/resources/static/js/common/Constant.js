@@ -10,6 +10,9 @@ function getConstant() {
             YES: '是的',
             NO: '再想想'
 
+        },
+        err:{
+            ERROR_INFO:'暂无数据'
         }
     };
     return Constant;

@@ -57,11 +57,11 @@
                             <ul class="layui-timeline" style="margin-top: 20px">
                             </ul>
                         </div>
-                        <div class="layui-tab-item layui-anim layui-anim-upbit">
+                        <div class="layui-tab-item layui-anim layui-anim-upbit" id="guangZhu">
                             <ul class="layui-timeline" style="margin-top: 20px">
                             </ul>
                         </div>
-                        <div class="layui-tab-item layui-anim layui-anim-upbit">
+                        <div class="layui-tab-item layui-anim layui-anim-upbit" id="shouCang">
                             <ul class="layui-timeline" style="margin-top: 20px">
                             </ul>
                         </div>
@@ -112,10 +112,12 @@
 </main>
 <footer id="footer"></footer>
 <script src="/static/layui/layui.all.js"></script>
+<script src="/static/js/common/Constant.js"></script>
 <script>
     $ = layui.$;
     $("#footer").load("/footer");
     $("#header").load("/nav");
+    let constant = getConstant();
     const util = layui.util;
     let time;
     util.fixbar({
@@ -141,10 +143,10 @@
     $.get("/api/comment/userid", {userId: 1004}, (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
-            $("#myComment ul").append();
+            $("#myComment ul").append(renderMyComment(item));
         });
     }).fail(() => {
-
+        $("#myComment ul").append(errplane());
     });
 
     $.get("/api/reply/userId/1004", (data) => {
@@ -153,19 +155,17 @@
             $("#myReply ul").append(renderMyReply(item));
         });
     }).fail(() => {
-        console.log("no")
+        $("#myReply ul").append(errplane());
     });
-
+    $("#guangZhu ul").append(errplane());
+    $("#shouCang ul").append(errplane());
     $.get("/api/reply/parentId/1004", {}, (data) => {
         let res = data.data;
         $.each(res, function (index, item) {
-            $("#reply ul").append(
-                "  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> <div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">"
-                + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() + "月" + new Date(item.createTime).getDay() + "日" + "</h3> <p>" + item.rcontent
-                + " </p></div> </li>");
+            $("#reply ul").append(renderMyReply(item));
         });
     }).fail((err, data) => {
-        console.log("no")
+        $("#reply ul").append(errplane());
     });
 
     function deleter(element) {
@@ -192,8 +192,7 @@
         });
 
     }
-
-    function renderMyReply(item) {
+    function  renderMyComment(item) {
         let data = "  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> " +
             "<div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">"
             + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() +
@@ -205,7 +204,22 @@
             "</li>";
         return data;
     }
-
+    function renderMyReply(item) {
+        let data = "  <li class=\"layui-timeline-item\"> <i class=\"layui-icon layui-timeline-axis\">&#xe63f;</i> " +
+            "<div class=\"layui-timeline-content layui-text\"> <h3 class=\"layui-timeline-title\">"
+            + new Date(item.createTime).getFullYear() + "年" + new Date(item.createTime).getMonth() +
+            "月" + new Date(item.createTime).getDay() + "日" +
+            "</h3> " +
+            "<p>" + item.rcontent + " </p> " +
+            "<button id='del' onclick='deleter(this)' value='" + item.movieId + "'>删除</button> " +
+            "</div> " +
+            "</li>";
+        return data;
+    }
+    function errplane() {
+        let data = "<div><p style='font-size: 40px;text-align: center'>"+constant.err.ERROR_INFO+"</p></div>"
+        return data;
+    }
 </script>
 </body>
 </html>
