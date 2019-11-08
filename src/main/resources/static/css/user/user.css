@@ -48,7 +48,8 @@
 }
 #err p{
     position: relative;
-    top: 40%;
+    top: 50%;
+    font-family: 宋体;
 }
 button{
     background: none;
