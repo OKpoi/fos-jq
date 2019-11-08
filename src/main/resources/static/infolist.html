@@ -22,9 +22,15 @@
         $.get("/api/info/allinfo",(data) => {
             let res = data.data;
             $.each(res, function (index, item) {
-                $('#infoList').append("<div class= 'layui-col-md12'><figure><img src='img/demo/download.jpg'><figcaption><p>"+item.title+"</p></figcaption><a href='../info?infoId="+item.infoId+"'></a></figure></div>");
+                $('#infoList').append(renderInfoList(item));
             })
+        }).fail((err,data)=>{
+            console.log("错误");
         });
+        function renderInfoList(item) {
+            let data ="<div class= 'layui-col-md12'><figure><img src='img/demo/download.jpg'><figcaption><p>"+item.title+"</p></figcaption><a href='../info?infoId="+item.infoId+"'></a></figure></div>";
+            return data;
+        }
     </script>
 </body>
 </html>

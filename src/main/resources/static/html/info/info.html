@@ -29,7 +29,13 @@
     var infoId = $.getURLParam("infoId");
     $.get("/api/info/infobyid",{infoId: infoId},(data) => {
         let res = data.data;
-        $('#info').append("<div class= 'layui-col-md12'><figure><img src='../../img/demo/download.jpg'><figcaption><p>"+res.title+"</p>&nbsp&nbsp&nbsp&nbsp"+res.infoContent+"</figcaption></figure></div>");
-    })
+        $('#info').append(renderInfo(res));
+    }).fail((err,data)=>{
+        console.log("错误");
+    });
+    function renderInfo(res) {
+        let data = "<div class= 'layui-col-md12'><figure><img src='../../img/demo/download.jpg'><figcaption><p>"+res.title+"</p>&nbsp&nbsp&nbsp&nbsp"+res.infoContent+"</figcaption></figure></div>"
+        return data;
+    }
 </script>
 </html>
