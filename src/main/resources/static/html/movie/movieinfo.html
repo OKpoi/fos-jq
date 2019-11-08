@@ -92,65 +92,69 @@
 </main>
 <footer id="footer"></footer>
 <script src="/static/layui/layui.all.js"></script>
+<script src="/static/js/common/Constant.js"></script>
 <script>
     $ = layui.$;
     $("#header").load("/nav");
     $("#footer").load("/footer");
     let time;
+    const constant = getConstant();
 
-    $('.movie-img').mouseenter(() => {
-        $('.playbtn').show(200);
-        $('.movie-img').css('filter', 'blur(1px) brightness(90%)');
-    });
-
-    $('.movie-img').mouseleave(() => {
-        time = setTimeout(() => {
-            $('.playbtn').hide(200);
-            $('.movie-img').css('filter', 'blur(0px) brightness(100%)');
-        }, 200);
-    });
-
-    $('.playbtn').mouseenter(() => {
-        clearTimeout(time);
-    });
-
-    $('.playbtn').click(() => {
-        layer.open({
-            type: 2,
-            title: false,
-            area: ['1024px', '720px'],
-            shade: 0.8,
-            closeBtn: 0,
-            shadeClose: true,
-            content: '//player.youku.com/embed/XMjY3MzgzODg0'
-        });
-    });
-
-    $('.reply-btn').click(() => {
-        layer.prompt({
-            title: constant.movieinfo.TITLE,
-            formType: 2,
-            shadeClose: true,
-            moveOut: 'true'
-        }, (text) => {
-            if (text === null) {
-                layer.msg(Constant.movieinfo.TEXT_IS_EMPTY);
-                return
-            }
-            console.log(text);
-
-        }, (index) => {
-            layer.close(index);
+    $(document).ready(() => {
+        $('.movie-img').mouseenter(() => {
+            $('.playbtn').show(200);
+            $('.movie-img').css('filter', 'blur(1px) brightness(90%)');
         });
 
+        $('.movie-img').mouseleave(() => {
+            time = setTimeout(() => {
+                $('.playbtn').hide(200);
+                $('.movie-img').css('filter', 'blur(0px) brightness(100%)');
+            }, 200);
+        });
 
-    });
+        $('.playbtn').mouseenter(() => {
+            clearTimeout(time);
+        });
 
+        $('.playbtn').click(() => {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['1024px', '720px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '//player.youku.com/embed/XMjY3MzgzODg0'
+            });
+        });
 
-    function renderContent() {
-        let content = "<div style=\"background: black;min-height: 100%;color: white\">2</div>"
-        return content;
-    }
+        $('.reply-btn').click(() => {
+            layer.prompt({
+                title: constant.movieinfo.TITLE,
+                formType: 2,
+                shadeClose: true,
+                moveOut: 'true'
+            }, (text) => {
+                if (text === null) {
+                    layer.msg(constant.movieinfo.TEXT_IS_EMPTY);
+                    return
+                }
+                console.log(text);
+
+            }, (index) => {
+                layer.close(index);
+            });
+
+        });
+
+        function renderContent() {
+            let content = "<div style=\"background: black;min-height: 100%;color: white\">2</div>"
+            return content;
+        };
+
+    })
+
 
 </script>
 
